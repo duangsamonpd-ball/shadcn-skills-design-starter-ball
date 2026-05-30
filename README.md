@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# shadcn-nextjs-design — Claude Code Skill
 
-## Getting Started
+A Claude Code skill that teaches Claude how to build UI in a **Next.js (App Router) + shadcn/ui + Tailwind CSS v4** project using a fixed design-token system.
 
-First, run the development server:
+## Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+.claude/skills/shadcn-nextjs-design/
+├── SKILL.md   ← entry point: rules, shadcn CLI, server/client, component & page patterns
+└── DESIGN.md  ← design-token registry (colors, spacing, radius, typography — 1,812 vars)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`SKILL.md` carries YAML frontmatter (`name` + `description`), so Claude Code auto-loads it
+whenever you ask it to build or edit components, pages, forms, dialogs, tables, or styling.
+`DESIGN.md` is read on demand for exact token values.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Install into a Next.js project
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy the skill folder into your project (or your personal skills dir):
 
-## Learn More
+```bash
+# Project-scoped (committed, shared with the team)
+mkdir -p <your-next-app>/.claude/skills
+cp -R .claude/skills/shadcn-nextjs-design <your-next-app>/.claude/skills/
 
-To learn more about Next.js, take a look at the following resources:
+# Or user-scoped (available in every project)
+cp -R .claude/skills/shadcn-nextjs-design ~/.claude/skills/
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Then in that project just describe the UI you want — Claude picks up the skill automatically.
+You can also invoke it explicitly with `/shadcn-nextjs-design`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Verify it loads
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Run `/doctor` (or check the skills list) in Claude Code from the target project and confirm
+`shadcn-nextjs-design` appears.
+# shadcn-skills-design-starter-ball
