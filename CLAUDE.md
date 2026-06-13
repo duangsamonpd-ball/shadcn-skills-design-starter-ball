@@ -93,14 +93,12 @@ The Figma file is the design source of truth. Use the **Figma MCP** for the desi
 
 ### Configuration (fill in when available)
 
-```
 # Figma file — ADD LATER
-FIGMA_FILE_URL:  <paste figma.com/design/... URL here>
-FIGMA_FILE_KEY:  <paste file key here>
+FIGMA_FILE_URL:  https://www.figma.com/design/HfydkFEyj2PY0tpZMz7i3K/-shadcn_ui-components-not-token--for-learning-
+FIGMA_FILE_KEY:  HfydkFEyj2PY0tpZMz7i3K
 ```
 
-> No Figma file is wired up yet. Until the URL/key above is filled in, build from `DESIGN.md`
-> tokens only and skip the live-read steps. When a node URL is provided in a task, use it directly.
+> Figma file is now configured. When a node URL is provided in a task, use it directly.
 
 ### Implementing a Figma design
 

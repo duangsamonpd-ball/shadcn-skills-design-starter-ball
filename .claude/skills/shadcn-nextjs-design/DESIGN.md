@@ -33,6 +33,8 @@
   --accent: #f5f5f5;
   --accent-foreground: #171717;
   --destructive: #dc2626;
+  --success: #047857;
+  --success-foreground: #fafafa;
   --border: #e5e5e5;
   --input: #e5e5e5;
   --ring: #737373;
@@ -72,6 +74,8 @@
   --accent: #404040;
   --accent-foreground: #fafafa;
   --destructive: #f87171;
+  --success: #34d399;
+  --success-foreground: #0a0a0a;
   --border: #404040;
   --input: #171717;
   --ring: #737373;
@@ -110,6 +114,8 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -165,6 +171,7 @@ export default { plugins: { "@tailwindcss/postcss": {} } }
 | `accent` | neutral/100 `#f5f5f5` | neutral/700 `#404040` | blue/700 `#1d4ed8` | yellow/700 `#a16207` |
 | `accent-foreground` | neutral/900 `#171717` | neutral/50 `#fafafa` | blue/50 `#eff6ff` | yellow/50 `#fefce8` |
 | `destructive` | red/600 `#dc2626` | red/400 `#f87171` | red/400 `#f87171` | red/600 `#dc2626` |
+| `success` | emerald/700 `#047857` | emerald/400 `#34d399` | emerald/400 `#34d399` | emerald/700 `#047857` |
 | `border` | neutral/200 `#e5e5e5` | neutral/700 `#404040` | blue/700 `#1d4ed8` | yellow/700 `#a16207` |
 | `input` | neutral/200 `#e5e5e5` | neutral/900 `#171717` | blue/900 `#1e3a8a` | yellow/900 `#713f12` |
 | `ring` | neutral/500 `#737373` | neutral/500 `#737373` | blue/500 `#3b82f6` | yellow/50 `#fefce8` |

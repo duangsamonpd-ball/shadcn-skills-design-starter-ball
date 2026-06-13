@@ -21,6 +21,8 @@
   --accent: #f5f5f5;
   --accent-foreground: #171717;
   --destructive: #dc2626;
+  --success: #047857; /* emerald-700 — 5.48:1 on #fff (WCAG AA) */
+  --success-foreground: #fafafa;
   --border: #e5e5e5;
   --input: #e5e5e5;
   --ring: #737373;
@@ -60,6 +62,8 @@
   --accent: #404040;
   --accent-foreground: #fafafa;
   --destructive: #f87171;
+  --success: #34d399; /* emerald-400 — 10.3:1 on #0a0a0a (WCAG AAA) */
+  --success-foreground: #0a0a0a;
   --border: #404040;
   --input: #171717;
   --ring: #737373;
@@ -98,6 +102,8 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
