@@ -157,7 +157,16 @@ Add more components as features require: `npx shadcn@latest add <name>` (see `SK
 
 ## Reference: MCP & Skills
 
-- **Skill `shadcn-nextjs-design`** — UI build rules + patterns + token registry (this repo).
+- **Skill `shadcn-nextjs-design`** — UI build rules + patterns + token registry (this repo). **Primary
+  skill — use it for any UI work; its `DESIGN.md` + `globals.css` are the token source of truth.**
+- **`ux-ui-*` skills** (16 more: `design-tokens`, `design-code`, `design-component`, `a11y-audit`,
+  `design-review`, `performance`, `ux-writing`, `brandkit`, `apply-aesthetic`, `figma-integration`,
+  `governance`, `token-build`, `design-qa`, `prototype`, `redesign`, `image-to-code`,
+  `migrate-design-system`) — vendored from `ux-ui-agent-skills`; support files in
+  `.claude/skills/_ux-ui-shared/`. **Reference/process aids only.** They must **defer to Figma →
+  `DESIGN.md` + `globals.css`** for tokens — never emit the bundled `_ux-ui-shared/tokens/*.json`
+  values or create a second `:root`/`@theme`. See the `PROJECT OVERRIDE` banner in
+  `_ux-ui-shared/CLAUDE.md`.
 - **Figma MCP** — `get_design_context`, `get_screenshot`, `get_metadata`, `get_variable_defs`,
   `get_code_connect_map`, `search_design_system`.
 - **Figma skills** — `figma:figma-generate-design` (page→Figma / design→code), `figma:figma-use`

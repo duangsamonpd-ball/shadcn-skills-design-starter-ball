@@ -8,7 +8,7 @@ description: Optimize UI performance against Core Web Vitals — LCP, INP, CLS �
 Make the UI fast and stable. Treat performance as an accessibility concern — slow/janky UIs fail low-end devices first.
 
 ## Steps
-1. Read `../_shared/workflows/performance.md` (Core Web Vitals targets, loading strategy, layout-shift, animation perf, design-system runtime cost).
+1. Read `../_ux-ui-shared/workflows/performance.md` (Core Web Vitals targets, loading strategy, layout-shift, animation perf, design-system runtime cost).
 2. Diagnose against budgets: **LCP ≤ 2.5s**, **INP ≤ 200ms**, **CLS ≤ 0.1**. Measure on a mid-tier mobile profile (throttle slow 4G + 4× CPU).
 3. Loading: render above-fold first (this repo is Next.js App Router — use Server Components; keep `"use client"` to interactive leaves only), code-split by route + heavy widget, lazy-load below-fold/behind-interaction, preload one critical font weight (Geist), modern responsive images via `next/image`.
 4. Kill layout shift: size skeletons to final dimensions, reserve media space via `aspect-ratio`, never inject content above existing.
