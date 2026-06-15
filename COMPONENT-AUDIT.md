@@ -1,17 +1,18 @@
 # Component Audit — Figma × Skill Suite
 
 **Figma file:** `@shadcn_ui components not token (for learning)` — key `HfydkFEyj2PY0tpZMz7i3K`
-**Date:** 2026-06-13
+**Date:** 2026-06-13 · **8-state pass:** 2026-06-15 (live MCP)
 **Audited against:** the **full skill suite** — `shadcn-nextjs-design` (`SKILL.md §2`, `DESIGN.md §6`)
 **and** the `ux-ui-*` design taxonomy in `.claude/skills/_ux-ui-shared/components/*.md`
 (atoms · molecules · organisms · templates · navigation · feedback · forms-advanced · overlays ·
 data-display · data-viz).
 
-> **Data-source caveat.** The Figma MCP is rate-limited on the current **View seat** (the file sits
-> under the "Iron" Pro team where this account is View-only), so live node inspection was not possible
-> this pass. The Figma column reuses the **2026-05-30 REST full-traverse** inventory (58,494 nodes;
-> see Appendix). Component sets rarely change in two weeks, but for a live refresh see
-> [Refresh](#refresh-the-figma-side-live).
+> **Data source.** The 2026-06-15 8-state pass used the **Figma MCP live** with a **Full seat**
+> (`duangsamon.pd@gmail.com` on the Iron Pro team) — every component page was drilled via
+> `get_metadata` to read its `State=*` variant symbols (§6). The earlier coverage matrix (§2–§5)
+> reuses the **2026-05-30 REST full-traverse** inventory (58,494 nodes; see Appendix). The earlier
+> "View-seat rate-limited / file empty" caveat is **resolved and no longer applies** — both were
+> account/enumeration artifacts, not facts about the file.
 
 ---
 
@@ -25,7 +26,7 @@ data-display · data-viz).
 | Missing from **both** (skill expects, nowhere built) | **3** hard + 3 soft (composed) |
 | Templates: Figma Examples only, **no** project routes | **4** |
 | shadcn primitives **beyond** the abstract skill taxonomy | **17** |
-| Per-component 8-state quality bar | **unverified** (needs live Figma) |
+| Per-component 8-state quality bar | **verified live** — see §6 (Focus & Error states absent file-wide) |
 
 **Headline:** the atomic layer is in great shape (10/10 atoms covered both sides). The gaps cluster
 in **higher-order** taxonomy items the abstract specs expect but shadcn doesn't ship as primitives —
@@ -146,13 +147,84 @@ and need no action — just noting the taxonomy mismatch:
 `Kbd`, `Native Select`, `Spinner`, `Hover Card`, `Context Menu`, `Sheet`, `Alert Dialog`,
 `Navigation Menu`, `Toggle Group`, `Textarea`. (`Resizable` is project-only — absent from Figma.)
 
-## 6. Quality bar (the 8 states) — UNVERIFIED this pass
+## 6. Quality bar (the 8 states) — VERIFIED LIVE (2026-06-15)
 
-Every interactive component in the skills must define **Default · Hover · Focus · Active · Disabled ·
-Loading · Error · Selected** (`atoms.md`, `CLAUDE.md → State Requirements`). Confirming per-component
-state coverage in Figma requires live node inspection, which the View-seat MCP limit blocked. The
-2026-05-30 traverse only spot-checked Button/Badge/Alert **variants**, not full state sets. **Action:**
-re-run with live access (below) to gate each component on the 8-state bar.
+The skill bar asks every interactive component for **Default · Hover · Focus · Active · Disabled ·
+Loading · Error · Selected** (`atoms.md`, `CLAUDE.md → State Requirements`). On 2026-06-15 all **53
+component pages** were drilled live via MCP `get_metadata`, reading each `State=*` variant symbol.
+
+### How this Figma file models states (read before judging the gaps)
+This is a **learning/documentation file**, not a strict variant library. It documents the states the
+author chose to show, with file-local naming that doesn't map 1:1 to the canonical 8:
+- **`State=Active`** on inputs = the **focus/typing ring** (so Input/Textarea/OTP cover *Focus* under
+  the name "Active", not a CSS `:active` press state).
+- **`State=Open` / `Toggled` / `On` / `Checked` / `Dialog` / `Drawer`** all map to **Selected/expanded**.
+- **`State=Hover`** on menus is really the **open/expanded** preview, not a pure hover token.
+- Pressed (`:active`) is never a distinct variant anywhere.
+
+### Two file-wide gaps (the real headline)
+- **Focus — 0 components** have an explicit `State=Focus` variant. Inputs approximate it via "Active";
+  buttons, checkboxes, switches, radios, toggles, selects, menus show **no focus-ring variant** at all.
+- **Error / invalid — 0 components** anywhere. No Input, Textarea, Select, Checkbox, Radio, OTP, or
+  Field documents an error / `aria-invalid` state. This is the single biggest design-system hole.
+
+### Per-component state coverage (interactive components)
+Legend: ✓ explicit variant · ≈ present under a different name · ✗ not modeled · — N/A for this component
+
+| Component | Default | Hover | Focus | Active(press) | Disabled | Loading | Error | Selected | Variant symbols seen |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|---|
+| Button | ✓ | ✓ | ✗ | ✗ | ✗ | ✓ | ✗ | — | Type=Primary/Secondary/Destructive/Outline/Ghost/Link/Icon/With icon/Loading; State=Default/Hover/Loading |
+| Checkbox | ✓ | ✗ | ✗ | ✗ | ✓ | — | ✗ | ✓ | Default, Disabledd[sic], Type=Card/Checked |
+| Switch | ✓ | ✗ | ✗ | ✗ | ✗ | — | ✗ | ✓ | State=Off/On |
+| Radio Group | ✓ | ✗ | ✗ | ✗ | ✗ | — | ✗ | ≈ | single Radio_group + Form (selected baked in) |
+| Toggle | ✓ | ✗ | ✗ | ✗ | ✓ | — | ✗ | ✓ | State=Default/Toggled + Disabled (sizes/outline) |
+| Toggle Group | ✓ | ✗ | ✗ | ✗ | ✓ | — | ✗ | ✓ | State=Default/Active + Examples/Disabled |
+| Input | ✓ | ✗ | ≈ | ✗ | ✓ | ✗ | ✗ | — | State=Default/Active, Disabled (File/Label/Button/Form) |
+| Textarea | ✓ | ✗ | ≈ | ✗ | ✓ | ✗ | ✗ | — | State=Default/Active, Disabled |
+| Input OTP | ✓ | ✗ | ≈ | ✗ | ✗ | ✗ | ✗ | — | State=Default/Active (Pattern/Separator/Form) |
+| Native Select | ✓ | ✗ | ✗ | ✗ | ✓ | — | ✗ | ≈ | State=Default/Open + Disabled |
+| Select | ✓ | ✗ | ✗ | ✗ | ✗ | — | ✗ | ≈ | State=Default/Open (Scrollable/Form) |
+| Combobox | ✓ | ✗ | ✗ | ✗ | ✗ | — | ✗ | ≈ | State=Default/Open |
+| Slider | ✓ | ✗ | ✗ | ✗ | ✗ | — | ✗ | — | single Slider symbol |
+| Accordion | ✓ | ✓ | ✗ | ✗ | ✗ | — | ✗ | ✓ | State=Default/Hover/Open (+Question prototype) |
+| Collapsible | ✓ | ✗ | ✗ | ✗ | ✗ | — | ✗ | ✓ | State=Default/Open |
+| Dropdown Menu | ✓ | ✗ | ✗ | ✗ | ✗ | — | ✗ | ✓ | State=Button/Open (×3 sets) |
+| Context Menu | ✓ | ✗ | ✗ | ✗ | ✗ | — | ✗ | ✓ | State=Default/Open |
+| Menubar | ✓ | ≈ | ✗ | ✗ | ✗ | — | ✗ | ✓ | State=Default/Hover(open) |
+| Navigation Menu | ✓ | ✗ | ✗ | ✗ | ✗ | — | ✗ | ✓ | State=Default/Open |
+| Tabs | ✓ | ✗ | ✗ | ✗ | ✗ | — | ✗ | ≈ | single Tabs symbol (active tab baked in) |
+| Pagination | ✓ | ✗ | ✗ | ✗ | ✗ | — | ✗ | ≈ | single symbol |
+| Dialog | ✓ | — | ✗ | — | — | — | — | ✓ | State=Button/Dialog (+custom close) |
+| Alert Dialog | ✓ | — | ✗ | — | — | — | — | ✓ | State=Button/open |
+| Sheet | ✓ | — | ✗ | — | — | — | — | ✓ | State=Button/Open |
+| Drawer | ✓ | — | ✗ | — | — | — | — | ✓ | State=Button/Drawer (+responsive) |
+| Popover | ✓ | — | ✗ | — | — | — | — | ✓ | State=Button/Open |
+| Hover Card | ✓ | ✓ | ✗ | — | — | — | — | ✓ | State=Button/Hover |
+| Tooltip | ✓ | ≈ | ✗ | — | — | — | — | ✓ | Property 1=Buttons/Tooltip |
+| Command | ✓ | — | ✗ | — | — | — | — | ✓ | State=Default/Open |
+| Date Picker | ✓ | ✗ | ✗ | ✗ | ✗ | — | ✗ | ✓ | State=Default/Open (4 variants) |
+| Calendar | ✓ | ✗ | ✗ | ✗ | ✗ | — | ✗ | ✓ | State=Default/Open (selector/pickers) |
+| Sidebar | ✓ | ✗ | ✗ | ✗ | — | — | ✗ | ✓ | State=Closed/Open |
+| Label | ✓ | — | — | — | — | — | — | ≈ | State=Default/Checked (peer state) |
+
+**Static / non-interactive** (8-state bar N/A — no states expected): Alert, Avatar, Badge, Breadcrumb,
+Card, Carousel, Chart, Data Table, Empty, Field, Input Group, Item, Kbd, Progress, Scroll Area,
+Separator, Skeleton, Sonner, Spinner, Table, Aspect Ratio. (Skeleton & Spinner *are* the loading
+primitive; Empty is the empty-state primitive.)
+
+### Verdict
+- ✅ **Default** and **Selected/open/checked** — comprehensively covered.
+- ⚠️ **Disabled** — only Checkbox, Input, Textarea, Native Select, Toggle, Toggle Group. **Button has
+  no disabled variant**; nor do Switch, Radio, Slider, Select.
+- ⚠️ **Hover** — only Button, Accordion, Menubar, Hover Card (+ Tooltip ≈).
+- ⚠️ **Loading** — only Button (`Type=Loading`); Spinner is the standalone primitive.
+- ❌ **Focus** — modeled nowhere as its own variant (inputs fold it into "Active").
+- ❌ **Error** — modeled nowhere, for any form control.
+
+> The **code** side does better than Figma here: shadcn primitives ship real `:focus-visible` rings,
+> `disabled:` styles, and `aria-invalid:` error styling via Tailwind even where Figma omits the variant.
+> So these are **Figma-design gaps**, not necessarily code gaps — the action is to add Focus/Error/Disabled
+> variants in Figma (or accept that this learning file intentionally omits them) before wiring Code Connect.
 
 ---
 
@@ -166,18 +238,20 @@ re-run with live access (below) to gate each component on the 8-state bar.
    `Aspect Radio→Ratio`, `Input OPT→OTP`, `KPD→Kbd`; consolidate the 4 `Dropdown*` sets. Expand
    `DESIGN.md §24`.
 4. **Resolve `Resizable`** — in the project but not Figma: add a Figma frame or drop it from `SKILL.md`.
-5. **Verify the 8-state bar per component** once live Figma access is restored (see Refresh).
+5. **Close the 8-state gaps in Figma** (§6 done): add **Focus** and **Error/invalid** variants — at
+   minimum to Input, Textarea, Select, Native Select, Checkbox, Radio, Input OTP, Field — and a
+   **Disabled** variant to Button/Switch/Radio/Slider/Select, before wiring Code Connect.
 6. **Sync Button sizes** — `DESIGN.md §6` lists more sizes than Figma exposes (Small/Default/Large).
 
 ## Refresh the Figma side live
 
-Two ways to re-pull current Figma data:
-- **Upgrade the seat** for this file's team to lift the MCP limit, then re-run `get_metadata` /
-  `search_design_system` per component.
-- **REST API** (what the 2026-05-30 pass used, not MCP-limited): provide a Figma Personal Access Token
-  as a **one-shot env var** (never written to disk) and I'll re-traverse `/v1/files/<key>` and diff
-  against this matrix. Run it yourself in-session with `! FIGMA_TOKEN=figd_… <command>` so the token
-  stays out of history/files.
+The **MCP path is the supported one** and now works (Full seat, `duangsamon.pd@gmail.com` / Iron Pro
+team). To re-pull: enumerate pages with `get_metadata` on an invalid nodeId (e.g. `0:0`) to dump the
+full page list, then drill each `↳ <Component>` page by node ID to read its `State=*` symbols. Node-ID
+map for all 53 component pages is recorded in the session memory (`figma-component-audit-wip`).
+
+> The old REST/PAT path is **abandoned** — scoped PATs need the `file_content:read` scope and a PAT was
+> accidentally exposed once (since revoked). Use MCP, not a token.
 
 ---
 
