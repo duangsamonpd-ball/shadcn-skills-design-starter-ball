@@ -53,29 +53,40 @@ npm run dev
 
 | Component | CLI | Component | CLI |
 |-----------|-----|-----------|-----|
-| Button | `button` | Tabs | `tabs` |
-| Input | `input` | Accordion | `accordion` |
-| Label | `label` | Collapsible | `collapsible` |
-| Textarea | `textarea` | Table | `table` |
-| Card | `card` | Pagination | `pagination` |
-| Badge | `badge` | Breadcrumb | `breadcrumb` |
-| Avatar | `avatar` | Navigation Menu | `navigation-menu` |
-| Separator | `separator` | Sidebar | `sidebar` |
-| Skeleton | `skeleton` | Menubar | `menubar` |
-| Progress | `progress` | Alert | `alert` |
-| Dialog | `dialog` | Sonner (Toast) | `sonner` |
-| Alert Dialog | `alert-dialog` | Command | `command` |
-| Sheet | `sheet` | Calendar | `calendar` |
-| Drawer | `drawer` | Scroll Area | `scroll-area` |
-| Popover | `popover` | Resizable | `resizable` |
-| Tooltip | `tooltip` | Toggle | `toggle` |
-| Dropdown Menu | `dropdown-menu` | Toggle Group | `toggle-group` |
-| Context Menu | `context-menu` | Form | `form` |
-| Select | `select` | Combobox | `command` + `popover` |
-| Checkbox | `checkbox` | Date Picker | `calendar` + `popover` |
-| Radio Group | `radio-group` | — | — |
-| Switch | `switch` | — | — |
-| Slider | `slider` | — | — |
+| Accordion | `accordion` | Input Group | `input-group` |
+| Alert | `alert` | Input OTP | `input-otp` |
+| Alert Dialog | `alert-dialog` | Item | `item` |
+| Aspect Ratio | `aspect-ratio` | Kbd | `kbd` |
+| Avatar | `avatar` | Label | `label` |
+| Badge | `badge` | Menubar | `menubar` |
+| Breadcrumb | `breadcrumb` | Native Select | `native-select` |
+| Button | `button` | Navigation Menu | `navigation-menu` |
+| Button Group | `button-group` | Pagination | `pagination` |
+| Calendar | `calendar` | Popover | `popover` |
+| Card | `card` | Progress | `progress` |
+| Carousel | `carousel` | Radio Group | `radio-group` |
+| Chart | `chart` | Scroll Area | `scroll-area` |
+| Checkbox | `checkbox` | Select | `select` |
+| Collapsible | `collapsible` | Separator | `separator` |
+| Combobox | `combobox` | Sheet | `sheet` |
+| Command | `command` | Sidebar | `sidebar` |
+| Context Menu | `context-menu` | Skeleton | `skeleton` |
+| Data Table | `table` + TanStack Table | Slider | `slider` |
+| Date Picker | `calendar` + `popover` | Sonner (Toast) | `sonner` |
+| Dialog | `dialog` | Spinner | `spinner` |
+| Drawer | `drawer` | Switch | `switch` |
+| Dropdown Menu | `dropdown-menu` | Table | `table` |
+| Empty | `empty` | Tabs | `tabs` |
+| Field | `field` | Textarea | `textarea` |
+| Form | `form` | Toggle | `toggle` |
+| Hover Card | `hover-card` | Toggle Group | `toggle-group` |
+| Input | `input` | Tooltip | `tooltip` |
+
+> All 56 names verified against the live `@shadcn` registry (2026-06-15). `Combobox` is now its own
+> registry item (`combobox`), no longer only `command` + `popover`. `Data Table` and `Date Picker` are
+> **composed**, not single CLI items. `Resizable` is intentionally **excluded** — it ships in shadcn but
+> is **not part of this project's Figma design system** (see `COMPONENT-AUDIT.md`); add a Figma frame
+> before reintroducing it.
 
 ---
 

@@ -300,7 +300,12 @@ Base `--radius = 0.5rem (8px)`. Size scale × 15 direction variants = 150 total.
 ## 6. Component Variant Reference
 
 **Button** — `variant`: `default` `outline` `ghost` `destructive` `secondary` `link`  
-**Button** — `size`: `xs` `sm` `default` `lg` `icon-xs` `icon-sm` `icon` `icon-lg`
+**Button** — `size`: `sm` `default` `lg` `icon`
+
+> **Synced to Figma (2026-06-15):** the Figma Button exposes `Size=Small / Default / Large`
+> (→ `sm` / `default` / `lg`) plus icon buttons rendered at 12 / 16 / 24 / 32 px. The prior `xs`,
+> `icon-xs`, `icon-sm`, `icon-lg` entries were **not** in the design system (or stock shadcn) and were
+> removed — use a single `icon` size and scale the glyph. See `COMPONENT-AUDIT.md` appendix §F.
 
 | variant | when to use |
 |---------|-------------|
@@ -1046,10 +1051,28 @@ Usage: `opacity-50` · `bg-primary/50` · `text-foreground/75`
 
 ## 24. Typos in Figma Source
 
+Correct these when mirroring Figma into code / Code Connect — never copy the typo through.
+
+**Token / variable names**
 | Figma source | Correct in code | Note |
 |-------------|-----------------|------|
 | `Giest Mono` | `Geist Mono` | Missing 'e' |
 | `Sans Sarif` | `Sans Serif` | Misspelling (fontUse variable name) |
+| `pimary-foreground` | `primary-foreground` | Missing 'r' |
+
+**Component page / variant names** (confirmed live 2026-06-15)
+| Figma source | Correct | Where |
+|-------------|---------|-------|
+| `Contex Menu` | `Context Menu` | page name (node 73:224) |
+| `Seperator` | `Separator` | page name (73:1987) |
+| `Aspect Radio` | `Aspect Ratio` | page name (1098:924) |
+| `Input OPT` | `Input OTP` | page name (101:698) |
+| `KPD` | `Kbd` | page name (1196:1097) |
+| `Disabledd` | `Disabled` | Checkbox variant symbol (72:2723) |
+
+Also note non-typo **naming drift**: snake_case symbols (`Radio_group`, `Hover_card`, `Scroll_area`,
+`Navigation_menu`, `With_label`), mixed-case dropdown sets (`Dropdown` / `Dropdown menu` /
+`Dropdown_menu`), and a lowercase `State=open` (Alert Dialog) — normalize to the canonical names above.
 
 ---
 
