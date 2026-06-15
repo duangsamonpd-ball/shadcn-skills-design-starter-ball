@@ -28,6 +28,7 @@ Browse 43 live components, build UI with semantic tokens, and let Claude Code de
 - [What's inside](#-whats-inside)
 - [Quick start](#-quick-start)
 - [The component docs site](#-the-component-docs-site)
+- [Storybook](#-storybook)
 - [Project structure](#-project-structure)
 - [Design-token system](#-design-token-system)
 - [The Claude Code skill suite](#-the-claude-code-skill-suite)
@@ -63,6 +64,8 @@ npm run dev          # → http://localhost:3000
 | `npm run build` | Production build |
 | `npm run start` | Serve the production build |
 | `npm run lint` | Run ESLint |
+| `npm run storybook` | Start Storybook (→ http://localhost:6006) |
+| `npm run build-storybook` | Build the static Storybook |
 
 Add more shadcn components anytime:
 
@@ -95,7 +98,7 @@ style guide.
 │              │                                               │
 │ Components    New                                            │
 │ • Accordion  ◀ active                                        │
-│ • Button     …43 total                                       │
+│ • Button     …47 total                                       │
 └──────────────┴───────────────────────────────────────────────┘
 ```
 
@@ -108,6 +111,28 @@ style guide.
 - 🌗 **Light / dark** toggle, every component shown in both
 - ♿ **Accessible** — single `<main>` landmark, focus moves to content on navigation, `aria-live` page
   announcements, WCAG-AA contrast throughout
+
+---
+
+## 📚 Storybook
+
+Every `src/components/ui/*` component also ships a **Storybook** story for isolated development, visual
+review, and a11y checks.
+
+```bash
+npm run storybook         # → http://localhost:6006
+npm run build-storybook   # static build into storybook-static/
+```
+
+- **Stack** — Storybook 10 with the **`@storybook/nextjs-vite`** framework (official Next 16 + React 19
+  support). Tailwind v4 is picked up through the project's existing `postcss.config.mjs`.
+- **Addons** — `addon-docs` (autodocs), `addon-a11y` (the **A11y** tab runs axe on every story), and
+  `addon-themes` (a toolbar toggle flips the canvas between **light / dark**).
+- **Stories** live in `src/stories/<Component>.stories.tsx` (one per UI component), titled
+  `Components/<Name>`. They load `globals.css` so the same design tokens + Geist fonts apply.
+
+> Stories are validated by `build-storybook` (Vite) and are intentionally **excluded from the Next.js
+> type-check** — `npm run build` compiles the app, `npm run build-storybook` compiles the stories.
 
 ---
 

@@ -5,14 +5,18 @@
 // Code Connect template for the Figma "Accordion" component (node 308-14,
 // "Animation Components") → the shadcn AccordionItem composition in this repo.
 //
-// ⚠️ ASSUMPTIONS TO VERIFY
-// The Figma component's exact property names could not be read live (Figma MCP
-// rate limit on the current View seat / Professional plan; Code Connect publishing
-// also requires an Org/Enterprise plan). The property names below ("Title",
-// "Content", "State") are best-effort guesses from the design. Once MCP access is
-// restored, run `get_context_for_code_connect` on the component's
-// mainComponentNodeId and reconcile the getString/getEnum names with what Figma
-// reports (property names are case-sensitive).
+// ⚠️ PARTIALLY VERIFIED (2026-06-15, Figma MCP, Full seat)
+// `get_metadata` on the Accordion component (node 3016:508) confirms the variant
+// property is **State** with values **Default / Open** (the earlier "Closed/Open"
+// guess was wrong — corrected below).
+//
+// The text-layer property names ("Title", "Content") still CANNOT be confirmed:
+// `get_context_for_code_connect` returns "You need a Developer seat in an
+// Organization or Enterprise plan to access Code Connect." So the getString names
+// below remain best-effort and Code Connect cannot be *published* from this plan.
+// To finish: obtain a Developer seat on an Org/Enterprise plan, then run
+// `get_context_for_code_connect` on the component and reconcile the getString
+// names (property names are case-sensitive).
 import figma from 'figma'
 const instance = figma.selectedInstance
 
@@ -26,7 +30,7 @@ const content = instance.getString('Content')
 // runtime by the parent <Accordion> value, not a prop on the item. Captured here for
 // completeness; it intentionally does not emit a prop (AccordionItem has none).
 const state = instance.getEnum('State', {
-  'Closed': 'closed',
+  'Default': 'closed',
   'Open': 'open',
 })
 

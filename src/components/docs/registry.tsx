@@ -47,6 +47,13 @@ import {
   ResizableDemo,
   ScrollAreaDemo,
 } from "./demos-extra2"
+import {
+  ChartDemo,
+  ComboboxDemo,
+  DataTableDemo,
+  DatePickerDemo,
+  EmptyDemo,
+} from "./demos-extra3"
 import { FormDemo } from "./demos-form"
 
 export type DocStatus = "new" | "updated"
@@ -783,6 +790,161 @@ const form = useForm({
     <Button type="submit">Submit</Button>
   </form>
 </Form>`,
+  },
+  {
+    slug: "combobox",
+    name: "Combobox",
+    category: "Forms",
+    description:
+      "An autocomplete input that filters a list of options, built from Command + Popover.",
+    cli: "npx shadcn@latest add combobox",
+    demo: ComboboxDemo,
+    status: "new",
+    code: `const [open, setOpen] = React.useState(false)
+const [value, setValue] = React.useState("")
+
+<Popover open={open} onOpenChange={setOpen}>
+  <PopoverTrigger asChild>
+    <Button variant="outline" role="combobox" aria-expanded={open} className="w-[220px] justify-between">
+      {value ? frameworks.find((f) => f.value === value)?.label : "Select framework..."}
+      <ChevronsUpDown className="size-4 shrink-0 opacity-50" />
+    </Button>
+  </PopoverTrigger>
+  <PopoverContent className="w-[220px] p-0">
+    <Command>
+      <CommandInput placeholder="Search framework..." />
+      <CommandList>
+        <CommandEmpty>No framework found.</CommandEmpty>
+        <CommandGroup>
+          {frameworks.map((framework) => (
+            <CommandItem key={framework.value} value={framework.value} onSelect={(v) => { setValue(v === value ? "" : v); setOpen(false) }}>
+              <Check className={cn("size-4", value === framework.value ? "opacity-100" : "opacity-0")} />
+              {framework.label}
+            </CommandItem>
+          ))}
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  </PopoverContent>
+</Popover>`,
+  },
+  {
+    slug: "date-picker",
+    name: "Date Picker",
+    category: "Forms",
+    description:
+      "A date selector composed from a Popover and the Calendar component.",
+    cli: "npx shadcn@latest add calendar popover",
+    demo: DatePickerDemo,
+    status: "new",
+    code: `const [date, setDate] = React.useState<Date | undefined>()
+
+<Popover>
+  <PopoverTrigger asChild>
+    <Button variant="outline" className={cn("w-[240px] justify-start text-left font-normal", !date && "text-muted-foreground")}>
+      <CalendarIcon className="size-4" />
+      {date ? format(date, "PPP") : <span>Pick a date</span>}
+    </Button>
+  </PopoverTrigger>
+  <PopoverContent className="w-auto p-0" align="start">
+    <Calendar mode="single" selected={date} onSelect={setDate} />
+  </PopoverContent>
+</Popover>`,
+  },
+  {
+    slug: "empty",
+    name: "Empty",
+    category: "Feedback",
+    description:
+      "A placeholder for empty, error, or zero-data states with icon, title, and actions.",
+    cli: "npx shadcn@latest add empty",
+    demo: EmptyDemo,
+    status: "new",
+    code: `<Empty className="rounded-lg border">
+  <EmptyHeader>
+    <EmptyMedia variant="icon">
+      <FolderOpen />
+    </EmptyMedia>
+    <EmptyTitle>No projects yet</EmptyTitle>
+    <EmptyDescription>Create your first project to get started.</EmptyDescription>
+  </EmptyHeader>
+  <EmptyContent>
+    <Button size="sm"><Plus className="size-4" /> New project</Button>
+  </EmptyContent>
+</Empty>`,
+  },
+  {
+    slug: "chart",
+    name: "Chart",
+    category: "Display",
+    description:
+      "Composable charts built on Recharts with theme-aware tokens, tooltips, and legends.",
+    cli: "npx shadcn@latest add chart",
+    demo: ChartDemo,
+    status: "new",
+    code: `const chartConfig = {
+  desktop: { label: "Desktop", color: "var(--chart-1)" },
+  mobile: { label: "Mobile", color: "var(--chart-2)" },
+} satisfies ChartConfig
+
+<ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+  <BarChart accessibilityLayer data={chartData}>
+    <CartesianGrid vertical={false} />
+    <XAxis dataKey="month" tickLine={false} tickMargin={10} axisLine={false} tickFormatter={(v) => v.slice(0, 3)} />
+    <ChartTooltip content={<ChartTooltipContent />} />
+    <ChartLegend content={<ChartLegendContent />} />
+    <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
+    <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+  </BarChart>
+</ChartContainer>`,
+  },
+  {
+    slug: "data-table",
+    name: "Data Table",
+    category: "Display",
+    description:
+      "A headless data grid powered by TanStack Table, rendered with the Table primitives.",
+    cli: "npm i @tanstack/react-table",
+    demo: DataTableDemo,
+    status: "new",
+    code: `const columns: ColumnDef<Payment>[] = [
+  { accessorKey: "status", header: "Status" },
+  { accessorKey: "email", header: "Email" },
+  {
+    accessorKey: "amount",
+    header: () => <div className="text-right">Amount</div>,
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue("amount"))
+      const formatted = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount)
+      return <div className="text-right font-medium">{formatted}</div>
+    },
+  },
+]
+
+const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel() })
+
+<Table>
+  <TableHeader>
+    {table.getHeaderGroups().map((hg) => (
+      <TableRow key={hg.id}>
+        {hg.headers.map((header) => (
+          <TableHead key={header.id}>
+            {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+          </TableHead>
+        ))}
+      </TableRow>
+    ))}
+  </TableHeader>
+  <TableBody>
+    {table.getRowModel().rows.map((row) => (
+      <TableRow key={row.id}>
+        {row.getVisibleCells().map((cell) => (
+          <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+        ))}
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>`,
   },
 ]
 
