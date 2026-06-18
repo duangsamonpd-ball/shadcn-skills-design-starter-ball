@@ -1,0 +1,43 @@
+name: Chromatic
+
+# Publish Storybook to Chromatic on every push so the deployed Storybook
+# (https://main--6a3386f159568e66e837d6d0.chromatic.com) always reflects main,
+# and every branch/PR gets its own published Storybook preview.
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+# Allow one Chromatic run per ref at a time; cancel superseded runs.
+concurrency:
+  group: chromatic-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  chromatic:
+    name: Publish to Chromatic
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Chromatic needs full git history to compare against baselines.
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish to Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          # The repo already has `build-storybook`; Chromatic runs it for us.
+          # Don't fail the build on visual changes (no reviewer gating yet).
+          exitZeroOnChanges: true
