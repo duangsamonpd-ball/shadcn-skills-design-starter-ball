@@ -4,7 +4,7 @@
 
 ### A Next.js + shadcn/ui starter wired to a **Figma-driven design-token system** — with a full **Claude Code skill suite** baked in.
 
-Browse 43 live components, build UI with semantic tokens, and let Claude Code design, review, and verify your work — all following the same rules, automatically.
+Browse 54 live components, build UI with semantic tokens, and let Claude Code design, review, and verify your work — all following the same rules, automatically.
 
 <br/>
 
@@ -14,7 +14,7 @@ Browse 43 live components, build UI with semantic tokens, and let Claude Code de
 ![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-radix-000000)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
 
-![Components](https://img.shields.io/badge/components-43-22c55e)
+![Components](https://img.shields.io/badge/components-54-22c55e)
 ![Design tokens](https://img.shields.io/badge/design_tokens-1%2C812-a855f7)
 ![Claude skills](https://img.shields.io/badge/Claude_skills-18-d97757)
 ![A11y](https://img.shields.io/badge/WCAG_2.2-AA_verified-0ea5e9)
@@ -27,6 +27,7 @@ Browse 43 live components, build UI with semantic tokens, and let Claude Code de
 
 - [What's inside](#-whats-inside)
 - [Quick start](#-quick-start)
+- [Components](#-components)
 - [The component docs site](#-the-component-docs-site)
 - [Storybook](#-storybook)
 - [Project structure](#-project-structure)
@@ -44,7 +45,7 @@ Browse 43 live components, build UI with semantic tokens, and let Claude Code de
 | ---- | ------------ |
 | **Framework** | Next.js **16** (App Router, Turbopack) · React **19** · TypeScript · ESLint |
 | **Styling** | Tailwind CSS **v4** — CSS-first config (`@theme` in CSS, no `tailwind.config.js`) |
-| **Components** | **shadcn/ui** (radix base) — **46 components installed**, **43 documented** in a live explorer |
+| **Components** | **shadcn/ui** (radix base) — **54 components** documented in a live explorer (full list [below](#-components)) |
 | **Design tokens** | **1,812 tokens** from Figma → mirrored in `DESIGN.md` → wired into `globals.css` (light + dark) |
 | **Docs site** | An interactive component explorer with **⌘K palette**, URL routing, and token reference pages |
 | **Theming** | `next-themes` dark mode + **Sonner** toaster, ready in the root layout |
@@ -75,6 +76,27 @@ npx shadcn@latest add card dialog table input label
 
 ---
 
+## 🧩 Components
+
+**54 components**, each with a live demo + copy-paste code in the docs site, and an isolated story in
+[Storybook](#-storybook). Grouped by category as they appear in the sidebar:
+
+| Category | Components |
+| -------- | --------- |
+| **Forms** (17) | Input · Textarea · Select · Native Select · Checkbox · Radio Group · Switch · Slider · Toggle · Toggle Group · Calendar · Date Picker · Input OTP · Combobox · Field · Input Group · Form |
+| **Display** (10) | Badge · Card · Avatar · Table · Data Table · Separator · Carousel · Chart · Item · Kbd |
+| **Overlay** (9) | Dialog · Alert Dialog · Sheet · Drawer · Popover · Dropdown Menu · Context Menu · Tooltip · Hover Card |
+| **Feedback** (6) | Alert · Progress · Skeleton · Spinner · Empty · Sonner (toast) |
+| **Navigation** (5) | Tabs · Breadcrumb · Pagination · Navigation Menu · Menubar |
+| **Layout** (3) | Resizable · Scroll Area · Aspect Ratio |
+| **Actions** (2) | Button · Button Group |
+| **Disclosure** (2) | Accordion · Collapsible |
+
+> Every component uses semantic design tokens (light + dark), ships the relevant ARIA / keyboard
+> behavior, and is installed via the shadcn CLI — none are hand-rolled.
+
+---
+
 ## 🧭 The component docs site
 
 `src/app/page.tsx` renders a self-contained **component explorer** (the `DocsShell`) — your living
@@ -98,7 +120,7 @@ style guide.
 │              │                                               │
 │ Components    New                                            │
 │ • Accordion  ◀ active                                        │
-│ • Button     …47 total                                       │
+│ • Button     …54 total                                       │
 └──────────────┴───────────────────────────────────────────────┘
 ```
 
@@ -119,9 +141,13 @@ style guide.
 Every `src/components/ui/*` component also ships a **Storybook** story for isolated development, visual
 review, and a11y checks.
 
+**▶ Live Storybook (deployed on Chromatic):**
+**https://main--6a3386f159568e66e837d6d0.chromatic.com**
+
 ```bash
-npm run storybook         # → http://localhost:6006
+npm run storybook         # → http://localhost:6006 (local dev)
 npm run build-storybook   # static build into storybook-static/
+npx chromatic --project-token=<token>   # publish the static build to Chromatic
 ```
 
 - **Stack** — Storybook 10 with the **`@storybook/nextjs-vite`** framework (official Next 16 + React 19
@@ -147,7 +173,7 @@ npm run build-storybook   # static build into storybook-static/
 │   │   ├── providers.tsx          # next-themes ThemeProvider ("use client")
 │   │   └── page.tsx               # renders <DocsShell />
 │   ├── components/
-│   │   ├── ui/                    # 46 shadcn components — never edit directly; wrap/extend
+│   │   ├── ui/                    # 54 shadcn components — never edit directly; wrap/extend
 │   │   ├── docs/                  # the docs explorer (shell, registry, demos, previews)
 │   │   └── layout/                # app-sidebar · command-menu · mode-toggle
 │   ├── hooks/                     # use-mobile, …
