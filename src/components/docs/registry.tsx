@@ -1013,7 +1013,7 @@ const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel() 
     name: "Input Group",
     category: "Forms",
     description:
-      "An input wrapped with inline addons — icons, buttons, or text — on either side.",
+      "An input wrapped with inline addons (icons, buttons, or text) on either side.",
     cli: "npx shadcn@latest add input-group",
     demo: InputGroupDemo,
     status: "new",
