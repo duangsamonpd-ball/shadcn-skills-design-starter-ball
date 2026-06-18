@@ -62,7 +62,7 @@ export function ButtonGroupDemo() {
       </ButtonGroup>
       <ButtonGroup>
         <ButtonGroupText>https://</ButtonGroupText>
-        <Input placeholder="acme.com" className="w-40" />
+        <Input placeholder="acme.com" aria-label="Domain" className="w-40" />
         <ButtonGroupSeparator />
         <Button variant="outline">Copy</Button>
       </ButtonGroup>
@@ -149,7 +149,7 @@ export function SpinnerDemo() {
 // ── Native Select ─────────────────────────────────────────────────
 export function NativeSelectDemo() {
   return (
-    <NativeSelect className="w-[200px]" defaultValue="apple">
+    <NativeSelect className="w-[200px]" defaultValue="apple" aria-label="Fruit">
       <NativeSelectOption value="apple">Apple</NativeSelectOption>
       <NativeSelectOption value="banana">Banana</NativeSelectOption>
       <NativeSelectOption value="blueberry">Blueberry</NativeSelectOption>
@@ -166,10 +166,10 @@ export function InputGroupDemo() {
         <InputGroupAddon>
           <Search />
         </InputGroupAddon>
-        <InputGroupInput placeholder="Search..." />
+        <InputGroupInput placeholder="Search..." aria-label="Search" />
       </InputGroup>
       <InputGroup>
-        <InputGroupInput placeholder="npm install shadcn" />
+        <InputGroupInput placeholder="npm install shadcn" aria-label="Install command" />
         <InputGroupAddon align="inline-end">
           <InputGroupButton aria-label="Copy">
             <Copy />
@@ -180,7 +180,11 @@ export function InputGroupDemo() {
         <InputGroupAddon>
           <Check className="text-primary" />
         </InputGroupAddon>
-        <InputGroupInput defaultValue="username-is-available" readOnly />
+        <InputGroupInput
+          defaultValue="username-is-available"
+          readOnly
+          aria-label="Username"
+        />
       </InputGroup>
     </div>
   )
