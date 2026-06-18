@@ -54,6 +54,15 @@ import {
   DatePickerDemo,
   EmptyDemo,
 } from "./demos-extra3"
+import {
+  ButtonGroupDemo,
+  FieldDemo,
+  InputGroupDemo,
+  ItemDemo,
+  KbdDemo,
+  NativeSelectDemo,
+  SpinnerDemo,
+} from "./demos-extra4"
 import { FormDemo } from "./demos-form"
 
 export type DocStatus = "new" | "updated"
@@ -945,6 +954,160 @@ const table = useReactTable({ data, columns, getCoreRowModel: getCoreRowModel() 
     ))}
   </TableBody>
 </Table>`,
+  },
+  {
+    slug: "button-group",
+    name: "Button Group",
+    category: "Actions",
+    description:
+      "Groups related buttons into a single segmented control, horizontal or vertical.",
+    cli: "npx shadcn@latest add button-group",
+    demo: ButtonGroupDemo,
+    status: "new",
+    code: `<ButtonGroup>
+  <Button variant="outline">
+    <ArrowLeft className="size-4" />
+    Previous
+  </Button>
+  <Button variant="outline">
+    Next
+    <ArrowRight className="size-4" />
+  </Button>
+</ButtonGroup>
+
+<ButtonGroup>
+  <ButtonGroupText>https://</ButtonGroupText>
+  <Input placeholder="acme.com" />
+  <ButtonGroupSeparator />
+  <Button variant="outline">Copy</Button>
+</ButtonGroup>`,
+  },
+  {
+    slug: "field",
+    name: "Field",
+    category: "Forms",
+    description:
+      "A form-field wrapper pairing a label, control, description, and error message.",
+    cli: "npx shadcn@latest add field",
+    demo: FieldDemo,
+    status: "new",
+    code: `<FieldGroup>
+  <Field>
+    <FieldLabel htmlFor="email">Email</FieldLabel>
+    <Input id="email" type="email" placeholder="you@example.com" />
+    <FieldDescription>We'll never share your email.</FieldDescription>
+  </Field>
+  <Field data-invalid>
+    <FieldLabel htmlFor="password">Password</FieldLabel>
+    <Input id="password" type="password" aria-invalid />
+    <FieldError>Password must be at least 8 characters.</FieldError>
+  </Field>
+  <Field orientation="horizontal">
+    <Checkbox id="terms" />
+    <FieldLabel htmlFor="terms">Accept terms and conditions</FieldLabel>
+  </Field>
+</FieldGroup>`,
+  },
+  {
+    slug: "input-group",
+    name: "Input Group",
+    category: "Forms",
+    description:
+      "An input wrapped with inline addons — icons, buttons, or text — on either side.",
+    cli: "npx shadcn@latest add input-group",
+    demo: InputGroupDemo,
+    status: "new",
+    code: `<InputGroup>
+  <InputGroupAddon>
+    <Search />
+  </InputGroupAddon>
+  <InputGroupInput placeholder="Search..." />
+</InputGroup>
+
+<InputGroup>
+  <InputGroupInput placeholder="npm install shadcn" />
+  <InputGroupAddon align="inline-end">
+    <InputGroupButton aria-label="Copy">
+      <Copy />
+    </InputGroupButton>
+  </InputGroupAddon>
+</InputGroup>`,
+  },
+  {
+    slug: "native-select",
+    name: "Native Select",
+    category: "Forms",
+    description:
+      "A styled native <select> for simple single-choice menus with full OS behavior.",
+    cli: "npx shadcn@latest add native-select",
+    demo: NativeSelectDemo,
+    status: "new",
+    code: `<NativeSelect defaultValue="apple">
+  <NativeSelectOption value="apple">Apple</NativeSelectOption>
+  <NativeSelectOption value="banana">Banana</NativeSelectOption>
+  <NativeSelectOption value="blueberry">Blueberry</NativeSelectOption>
+  <NativeSelectOption value="grapes">Grapes</NativeSelectOption>
+</NativeSelect>`,
+  },
+  {
+    slug: "item",
+    name: "Item",
+    category: "Display",
+    description:
+      "A flexible list row with media, title, description, and trailing actions.",
+    cli: "npx shadcn@latest add item",
+    demo: ItemDemo,
+    status: "new",
+    code: `<Item variant="outline">
+  <ItemMedia variant="icon">
+    <Mail />
+  </ItemMedia>
+  <ItemContent>
+    <ItemTitle>New message</ItemTitle>
+    <ItemDescription>You have a new message from Sarah.</ItemDescription>
+  </ItemContent>
+  <ItemActions>
+    <Button variant="ghost" size="icon" aria-label="Delete">
+      <Trash2 className="size-4" />
+    </Button>
+  </ItemActions>
+</Item>`,
+  },
+  {
+    slug: "kbd",
+    name: "Kbd",
+    category: "Display",
+    description:
+      "Renders keyboard keys and shortcut combinations with consistent styling.",
+    cli: "npx shadcn@latest add kbd",
+    demo: KbdDemo,
+    status: "new",
+    code: `<KbdGroup>
+  <Kbd>⌘</Kbd>
+  <Kbd>K</Kbd>
+</KbdGroup>
+
+<KbdGroup>
+  <Kbd>Ctrl</Kbd>
+  <Kbd>B</Kbd>
+</KbdGroup>`,
+  },
+  {
+    slug: "spinner",
+    name: "Spinner",
+    category: "Feedback",
+    description:
+      "An accessible loading indicator that inherits color and size from its context.",
+    cli: "npx shadcn@latest add spinner",
+    demo: SpinnerDemo,
+    status: "new",
+    code: `<Spinner />
+<Spinner className="size-6 text-primary" />
+
+<Button disabled>
+  <Spinner />
+  Loading...
+</Button>`,
   },
 ]
 
