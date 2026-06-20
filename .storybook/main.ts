@@ -6,6 +6,10 @@ const config: StorybookConfig = {
     "@storybook/addon-docs",
     "@storybook/addon-a11y",
     "@storybook/addon-themes",
+    // Adds the "Visual tests" tab — run/review Chromatic visual diffs from
+    // inside Storybook (links to the same project as the CI Chromatic build).
+    // Sign in once via the tab to connect; CI publishing is unaffected.
+    "@chromatic-com/storybook",
   ],
   framework: {
     name: "@storybook/nextjs-vite",
