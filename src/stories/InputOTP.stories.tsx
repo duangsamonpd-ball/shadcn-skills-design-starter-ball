@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   render: () => (
-    <InputOTP maxLength={6}>
+    <InputOTP maxLength={6} aria-label="One-time password">
       <InputOTPGroup>
         <InputOTPSlot index={0} />
         <InputOTPSlot index={1} />
@@ -35,7 +35,7 @@ export const Default: Story = {
 
 export const Disabled: Story = {
   render: () => (
-    <InputOTP maxLength={6} disabled>
+    <InputOTP maxLength={6} disabled aria-label="One-time password">
       <InputOTPGroup>
         <InputOTPSlot index={0} />
         <InputOTPSlot index={1} />
@@ -51,7 +51,7 @@ export const Disabled: Story = {
 /** `aria-invalid` turns every slot's border destructive. */
 export const Invalid: Story = {
   render: () => (
-    <InputOTP maxLength={6} aria-invalid>
+    <InputOTP maxLength={6} aria-invalid aria-label="One-time password">
       <InputOTPGroup>
         <InputOTPSlot index={0} aria-invalid />
         <InputOTPSlot index={1} aria-invalid />

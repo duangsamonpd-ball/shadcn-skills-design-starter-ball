@@ -22,7 +22,7 @@ export const Default: Story = {
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium">@ball starred 3 repos</span>
         <CollapsibleTrigger asChild>
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" aria-label="Toggle starred repositories">
             <ChevronsUpDown className="size-4" />
           </Button>
         </CollapsibleTrigger>
