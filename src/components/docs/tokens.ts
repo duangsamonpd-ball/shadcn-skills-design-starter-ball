@@ -36,10 +36,10 @@ export const colorGroups: ColorGroup[] = [
       { name: "Secondary", cssVar: "--secondary", light: "#f5f5f5", dark: "#262626" },
       { name: "Secondary Foreground", cssVar: "--secondary-foreground", light: "#0a0a0a", dark: "#fafafa" },
       { name: "Muted", cssVar: "--muted", light: "#f5f5f5", dark: "#262626" },
-      { name: "Muted Foreground", cssVar: "--muted-foreground", light: "#737373", dark: "#a3a3a3" },
+      { name: "Muted Foreground", cssVar: "--muted-foreground", light: "#6b6b6b", dark: "#a3a3a3" },
       { name: "Accent", cssVar: "--accent", light: "#f5f5f5", dark: "#404040" },
       { name: "Accent Foreground", cssVar: "--accent-foreground", light: "#171717", dark: "#fafafa" },
-      { name: "Destructive", cssVar: "--destructive", light: "#dc2626", dark: "#f87171" },
+      { name: "Destructive", cssVar: "--destructive", light: "#b91c1c", dark: "#f87171" },
     ],
   },
   {
