@@ -1060,15 +1060,16 @@ Correct these when mirroring Figma into code / Code Connect — never copy the t
 | `Sans Sarif` | `Sans Serif` | Misspelling (fontUse variable name) |
 | `pimary-foreground` | `primary-foreground` | Missing 'r' |
 
-**Component page / variant names** (confirmed live 2026-06-15)
+**Component page / variant names** — ✅ **FIXED IN FIGMA 2026-06-20** (all 6 renamed at source; table kept
+as a historical record / for anyone reading an older Figma snapshot)
 | Figma source | Correct | Where |
 |-------------|---------|-------|
-| `Contex Menu` | `Context Menu` | page name (node 73:224) |
-| `Seperator` | `Separator` | page name (73:1987) |
-| `Aspect Radio` | `Aspect Ratio` | page name (1098:924) |
-| `Input OPT` | `Input OTP` | page name (101:698) |
-| `KPD` | `Kbd` | page name (1196:1097) |
-| `Disabledd` | `Disabled` | Checkbox variant symbol (72:2723) |
+| ~~`Contex Menu`~~ | `Context Menu` | page name (node 73:224) |
+| ~~`Seperator`~~ | `Separator` | page name (73:1987) |
+| ~~`Aspect Radio`~~ | `Aspect Ratio` | page name (1098:924) |
+| ~~`Input OPT`~~ | `Input OTP` | page name (101:698) |
+| ~~`KPD`~~ | `Kbd` | page name (1196:1097) |
+| ~~`Disabledd`~~ | `Disabled` | Checkbox component symbol (511:806, page 72:2723) |
 
 Also note non-typo **naming drift**: snake_case symbols (`Radio_group`, `Hover_card`, `Scroll_area`,
 `Navigation_menu`, `With_label`), mixed-case dropdown sets (`Dropdown` / `Dropdown menu` /
