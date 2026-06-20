@@ -12,6 +12,7 @@ import {
   ColorsPage,
   IconsPage,
   InstallationPage,
+  InteractionStatesPage,
   IntroductionPage,
   RadiusPage,
   ShadowsPage,
@@ -195,6 +196,8 @@ export function DocsShell() {
               <ShadowsPage />
             ) : activeSlug === "icons" ? (
               <IconsPage />
+            ) : activeSlug === "states" ? (
+              <InteractionStatesPage />
             ) : (
               <>
                 <div className="flex flex-col gap-3">

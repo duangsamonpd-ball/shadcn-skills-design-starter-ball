@@ -29,3 +29,22 @@ export const Checked: Story = {
     </div>
   ),
 };
+
+export const Disabled: Story = {
+  render: () => (
+    <div className="flex items-center gap-2">
+      <Switch id="s3" disabled />
+      <Label htmlFor="s3">Airplane mode</Label>
+    </div>
+  ),
+};
+
+/** `aria-invalid` gives the track a destructive ring. */
+export const Invalid: Story = {
+  render: () => (
+    <div className="flex items-center gap-2">
+      <Switch id="s4" aria-invalid />
+      <Label htmlFor="s4">Airplane mode</Label>
+    </div>
+  ),
+};

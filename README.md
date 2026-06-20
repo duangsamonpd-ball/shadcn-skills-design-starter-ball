@@ -95,6 +95,23 @@ npx shadcn@latest add card dialog table input label
 > Every component uses semantic design tokens (light + dark), ships the relevant ARIA / keyboard
 > behavior, and is installed via the shadcn CLI — none are hand-rolled.
 
+### Interaction states
+
+Form controls are documented across their **full interaction-state set in both code _and_ Figma** —
+so the design library and the components stay in lock-step:
+
+| State | Code (Tailwind) | Figma variant |
+| ----- | --------------- | ------------- |
+| **Default** | base classes | `State=Default` |
+| **Focus** | `focus-visible:ring-ring/50` | `State=Active` |
+| **Error / Invalid** | `aria-invalid:border-destructive` · `aria-invalid:ring-destructive/20` | `State=Invalid` |
+| **Disabled** | `disabled:opacity-50` | `State=Disabled` |
+
+The **Error/Invalid** and **Disabled** variants were added to the Figma component library across the
+form family — Input, Textarea, Select, Native Select, Input OTP, Checkbox, Radio, Field, Button,
+Switch, Slider — every variant **bound to design tokens** (`destructive`, `opacity-50`), never
+hardcoded. States are token-driven, so they flip correctly in light **and** dark mode.
+
 ---
 
 ## 🧭 The component docs site

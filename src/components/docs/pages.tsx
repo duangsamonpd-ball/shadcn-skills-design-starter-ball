@@ -84,11 +84,30 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
+import { Checkbox } from "@/components/ui/checkbox"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Switch } from "@/components/ui/switch"
+import { Slider } from "@/components/ui/slider"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select"
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@/components/ui/input-otp"
 import { cn } from "@/lib/utils"
 import { docs } from "./registry"
 import {
@@ -804,6 +823,303 @@ export function IconsPage() {
           </CommandGroup>
         </CommandList>
       </Command>
+    </>
+  )
+}
+
+const stateLegend = [
+  {
+    state: "Default",
+    cls: "border-input",
+    token: "--input",
+    note: "Resting state.",
+  },
+  {
+    state: "Focus",
+    cls: "focus-visible:ring-ring/50",
+    token: "--ring",
+    note: "On keyboard focus — tab into any control below to see it.",
+  },
+  {
+    state: "Error / Invalid",
+    cls: "aria-invalid:border-destructive",
+    token: "--destructive",
+    note: "Set aria-invalid on the control.",
+  },
+  {
+    state: "Disabled",
+    cls: "disabled:opacity-50",
+    token: "opacity-50",
+    note: "Set the disabled prop.",
+  },
+]
+
+function StateRow({
+  label,
+  children,
+}: {
+  label: string
+  children: React.ReactNode
+}) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <span className="text-xs font-medium text-muted-foreground">{label}</span>
+      {children}
+    </div>
+  )
+}
+
+function StateCard({
+  title,
+  children,
+}: {
+  title: string
+  children: React.ReactNode
+}) {
+  return (
+    <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-5">
+      <span className="text-sm font-semibold text-foreground">{title}</span>
+      <div className="flex flex-col gap-4">{children}</div>
+    </div>
+  )
+}
+
+export function InteractionStatesPage() {
+  return (
+    <>
+      <div className="flex flex-col gap-3">
+        <h1 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+          Interaction States
+        </h1>
+        <p className="max-w-2xl text-base text-muted-foreground md:text-lg">
+          Every form control documents its full state set — and the same states
+          ship in the Figma library, so design and code stay in lock-step. All
+          states are token-driven, so they flip correctly in light and dark.
+        </p>
+      </div>
+
+      <section className="flex flex-col gap-4">
+        <h2 className="text-lg font-semibold text-foreground">The four states</h2>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {stateLegend.map((s) => (
+            <div
+              key={s.state}
+              className="flex flex-col gap-2 rounded-xl border border-border bg-card p-4"
+            >
+              <span className="text-sm font-semibold text-foreground">
+                {s.state}
+              </span>
+              <code className="w-fit rounded-sm bg-muted px-1.5 py-0.5 font-mono text-xs text-foreground">
+                {s.cls}
+              </code>
+              <p className="text-xs text-muted-foreground">{s.note}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-4">
+        <h2 className="text-lg font-semibold text-foreground">
+          Across the form family
+        </h2>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <StateCard title="Input">
+            <StateRow label="Default">
+              <Input placeholder="you@example.com" />
+            </StateRow>
+            <StateRow label="Error / Invalid">
+              <Input defaultValue="not-an-email" aria-invalid />
+            </StateRow>
+            <StateRow label="Disabled">
+              <Input placeholder="Disabled" disabled />
+            </StateRow>
+          </StateCard>
+
+          <StateCard title="Textarea">
+            <StateRow label="Default">
+              <Textarea placeholder="Type your message here." />
+            </StateRow>
+            <StateRow label="Error / Invalid">
+              <Textarea defaultValue="" aria-invalid />
+            </StateRow>
+            <StateRow label="Disabled">
+              <Textarea placeholder="Disabled" disabled />
+            </StateRow>
+          </StateCard>
+
+          <StateCard title="Select">
+            <StateRow label="Default">
+              <Select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select a fruit" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="apple">Apple</SelectItem>
+                  <SelectItem value="banana">Banana</SelectItem>
+                </SelectContent>
+              </Select>
+            </StateRow>
+            <StateRow label="Error / Invalid">
+              <Select>
+                <SelectTrigger className="w-full" aria-invalid>
+                  <SelectValue placeholder="Select a fruit" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="apple">Apple</SelectItem>
+                </SelectContent>
+              </Select>
+            </StateRow>
+            <StateRow label="Disabled">
+              <Select disabled>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Disabled" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="apple">Apple</SelectItem>
+                </SelectContent>
+              </Select>
+            </StateRow>
+          </StateCard>
+
+          <StateCard title="Native Select">
+            <StateRow label="Default">
+              <NativeSelect defaultValue="apple" aria-label="Fruit (default)">
+                <NativeSelectOption value="apple">Apple</NativeSelectOption>
+                <NativeSelectOption value="banana">Banana</NativeSelectOption>
+              </NativeSelect>
+            </StateRow>
+            <StateRow label="Error / Invalid">
+              <NativeSelect
+                defaultValue="apple"
+                aria-label="Fruit (invalid)"
+                aria-invalid
+              >
+                <NativeSelectOption value="apple">Apple</NativeSelectOption>
+                <NativeSelectOption value="banana">Banana</NativeSelectOption>
+              </NativeSelect>
+            </StateRow>
+            <StateRow label="Disabled">
+              <NativeSelect defaultValue="apple" aria-label="Fruit (disabled)" disabled>
+                <NativeSelectOption value="apple">Apple</NativeSelectOption>
+              </NativeSelect>
+            </StateRow>
+          </StateCard>
+
+          <StateCard title="Checkbox">
+            <StateRow label="Default">
+              <div className="flex items-center gap-2">
+                <Checkbox id="st-cb" />
+                <Label htmlFor="st-cb">Accept terms</Label>
+              </div>
+            </StateRow>
+            <StateRow label="Error / Invalid">
+              <div className="flex items-center gap-2">
+                <Checkbox id="st-cb-i" aria-invalid />
+                <Label htmlFor="st-cb-i">Accept terms</Label>
+              </div>
+            </StateRow>
+            <StateRow label="Disabled">
+              <div className="flex items-center gap-2">
+                <Checkbox id="st-cb-d" disabled />
+                <Label htmlFor="st-cb-d">Accept terms</Label>
+              </div>
+            </StateRow>
+          </StateCard>
+
+          <StateCard title="Radio Group">
+            <StateRow label="Default">
+              <RadioGroup defaultValue="a" className="gap-2">
+                <div className="flex items-center gap-2">
+                  <RadioGroupItem value="a" id="st-r-a" />
+                  <Label htmlFor="st-r-a">Comfortable</Label>
+                </div>
+              </RadioGroup>
+            </StateRow>
+            <StateRow label="Error / Invalid">
+              <RadioGroup className="gap-2">
+                <div className="flex items-center gap-2">
+                  <RadioGroupItem value="a" id="st-r-i" aria-invalid />
+                  <Label htmlFor="st-r-i">Comfortable</Label>
+                </div>
+              </RadioGroup>
+            </StateRow>
+            <StateRow label="Disabled">
+              <RadioGroup defaultValue="a" className="gap-2" disabled>
+                <div className="flex items-center gap-2">
+                  <RadioGroupItem value="a" id="st-r-d" />
+                  <Label htmlFor="st-r-d">Comfortable</Label>
+                </div>
+              </RadioGroup>
+            </StateRow>
+          </StateCard>
+
+          <StateCard title="Switch">
+            <StateRow label="Default">
+              <div className="flex items-center gap-2">
+                <Switch id="st-sw" />
+                <Label htmlFor="st-sw">Airplane mode</Label>
+              </div>
+            </StateRow>
+            <StateRow label="Error / Invalid">
+              <div className="flex items-center gap-2">
+                <Switch id="st-sw-i" aria-invalid />
+                <Label htmlFor="st-sw-i">Airplane mode</Label>
+              </div>
+            </StateRow>
+            <StateRow label="Disabled">
+              <div className="flex items-center gap-2">
+                <Switch id="st-sw-d" disabled />
+                <Label htmlFor="st-sw-d">Airplane mode</Label>
+              </div>
+            </StateRow>
+          </StateCard>
+
+          <StateCard title="Slider">
+            <StateRow label="Default">
+              <Slider defaultValue={[50]} max={100} step={1} />
+            </StateRow>
+            <StateRow label="Disabled">
+              <Slider defaultValue={[50]} max={100} step={1} disabled />
+            </StateRow>
+            <p className="text-xs text-muted-foreground">
+              Slider has no error state — it carries no single value to validate.
+            </p>
+          </StateCard>
+
+          <StateCard title="Input OTP">
+            <StateRow label="Default">
+              <InputOTP maxLength={4}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} />
+                  <InputOTPSlot index={1} />
+                  <InputOTPSlot index={2} />
+                  <InputOTPSlot index={3} />
+                </InputOTPGroup>
+              </InputOTP>
+            </StateRow>
+            <StateRow label="Error / Invalid">
+              <InputOTP maxLength={4} aria-invalid>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} aria-invalid />
+                  <InputOTPSlot index={1} aria-invalid />
+                  <InputOTPSlot index={2} aria-invalid />
+                  <InputOTPSlot index={3} aria-invalid />
+                </InputOTPGroup>
+              </InputOTP>
+            </StateRow>
+            <StateRow label="Disabled">
+              <InputOTP maxLength={4} disabled>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} />
+                  <InputOTPSlot index={1} />
+                  <InputOTPSlot index={2} />
+                  <InputOTPSlot index={3} />
+                </InputOTPGroup>
+              </InputOTP>
+            </StateRow>
+          </StateCard>
+        </div>
+      </section>
     </>
   )
 }

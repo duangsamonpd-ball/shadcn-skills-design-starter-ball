@@ -26,3 +26,22 @@ export const WithLabel: Story = {
     </div>
   ),
 };
+
+export const Disabled: Story = {
+  args: { disabled: true, placeholder: "Disabled" },
+  render: (args) => <Textarea {...args} className="w-72" />,
+};
+
+/** `aria-invalid` applies the destructive border + ring. */
+export const Invalid: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <div className="grid w-72 gap-2">
+      <Label htmlFor="bio">Bio</Label>
+      <Textarea id="bio" defaultValue="" aria-invalid aria-describedby="bio-error" />
+      <p id="bio-error" className="text-sm text-destructive">
+        Bio cannot be empty.
+      </p>
+    </div>
+  ),
+};

@@ -1127,12 +1127,14 @@ export const pages: PageEntry[] = [
   { slug: "radius", name: "Radius", group: "Design Tokens" },
   { slug: "shadows", name: "Shadows", group: "Design Tokens" },
   { slug: "icons", name: "Icons", group: "Design Tokens" },
+  { slug: "states", name: "Interaction States", group: "Guides" },
 ]
 
 /** Page groups in display order. */
 export const pageGroups: { name: string; items: PageEntry[] }[] = [
   "Getting Started",
   "Design Tokens",
+  "Guides",
 ].map((name) => ({ name, items: pages.filter((p) => p.group === name) }))
 
 export function isPage(slug: string): boolean {
