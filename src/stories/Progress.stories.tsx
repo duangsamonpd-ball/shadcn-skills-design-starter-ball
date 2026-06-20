@@ -13,5 +13,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => <Progress {...args} className="w-64" />,
+  render: (args) => <Progress {...args} aria-label="Loading progress" className="w-64" />,
 };

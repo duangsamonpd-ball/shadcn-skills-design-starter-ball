@@ -37,6 +37,7 @@ function ComboboxExample() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
+          aria-label="Framework"
           className="w-[220px] justify-between"
         >
           {value

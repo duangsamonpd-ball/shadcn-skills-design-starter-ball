@@ -317,7 +317,7 @@ type Mode = "light" | "dark"
 /** Surface colors for each preview mode, pulled from the base tokens so the
  *  panel reads correctly regardless of the site's active theme. */
 const surfaces: Record<Mode, { bg: string; fg: string; border: string; muted: string }> = {
-  light: { bg: "#ffffff", fg: "#0a0a0a", border: "#e5e5e5", muted: "#737373" },
+  light: { bg: "#ffffff", fg: "#0a0a0a", border: "#e5e5e5", muted: "#6b6b6b" },
   dark: { bg: "#0a0a0a", fg: "#fafafa", border: "#404040", muted: "#a3a3a3" },
 }
 

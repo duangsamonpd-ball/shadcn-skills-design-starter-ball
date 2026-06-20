@@ -140,6 +140,9 @@ function CommandSeparator({
   return (
     <CommandPrimitive.Separator
       data-slot="command-separator"
+      // Decorative divider — keep it out of the listbox a11y tree, where a
+      // role=separator child is invalid (groups already carry the structure).
+      aria-hidden="true"
       className={cn("-mx-1 h-px bg-border", className)}
       {...props}
     />

@@ -29,10 +29,10 @@
   --secondary: #f5f5f5;
   --secondary-foreground: #0a0a0a;
   --muted: #f5f5f5;
-  --muted-foreground: #737373;
+  --muted-foreground: #6b6b6b;
   --accent: #f5f5f5;
   --accent-foreground: #171717;
-  --destructive: #dc2626;
+  --destructive: #b91c1c;
   --success: #047857;
   --success-foreground: #fafafa;
   --border: #e5e5e5;
@@ -167,10 +167,10 @@ export default { plugins: { "@tailwindcss/postcss": {} } }
 | `secondary` | neutral/100 `#f5f5f5` | neutral/800 `#262626` | blue/800 `#1e40af` | yellow/800 `#854d0e` |
 | `secondary-foreground` | neutral/950 `#0a0a0a` | neutral/50 `#fafafa` | blue/50 `#eff6ff` | yellow/50 `#fefce8` |
 | `muted` | neutral/100 `#f5f5f5` | neutral/800 `#262626` | blue/800 `#1e40af` | yellow/800 `#854d0e` |
-| `muted-foreground` | neutral/500 `#737373` | neutral/400 `#a3a3a3` | blue/400 `#60a5fa` | yellow/400 `#facc15` |
+| `muted-foreground` | `#6b6b6b` (AA-tuned)¹ | neutral/400 `#a3a3a3` | blue/400 `#60a5fa` | yellow/400 `#facc15` |
 | `accent` | neutral/100 `#f5f5f5` | neutral/700 `#404040` | blue/700 `#1d4ed8` | yellow/700 `#a16207` |
 | `accent-foreground` | neutral/900 `#171717` | neutral/50 `#fafafa` | blue/50 `#eff6ff` | yellow/50 `#fefce8` |
-| `destructive` | red/600 `#dc2626` | red/400 `#f87171` | red/400 `#f87171` | red/600 `#dc2626` |
+| `destructive` | red/700 `#b91c1c`¹ | red/400 `#f87171` | red/400 `#f87171` | red/600 `#dc2626` |
 | `success` | emerald/700 `#047857` | emerald/400 `#34d399` | emerald/400 `#34d399` | emerald/700 `#047857` |
 | `border` | neutral/200 `#e5e5e5` | neutral/700 `#404040` | blue/700 `#1d4ed8` | yellow/700 `#a16207` |
 | `input` | neutral/200 `#e5e5e5` | neutral/900 `#171717` | blue/900 `#1e3a8a` | yellow/900 `#713f12` |
@@ -192,6 +192,12 @@ export default { plugins: { "@tailwindcss/postcss": {} } }
 | `semantic-background` | gray/500 `#6b7280` | gray/500 `#6b7280` | gray/900 `#111827` | gray/600 `#4b5563` |
 | `semantic-border` | gray/600 `#4b5563` | gray/600 `#4b5563` | gray/800 `#1f2937` | gray/800 `#1f2937` |
 | `semantic-foreground` | white `#ffffff` | white `#ffffff` | white `#ffffff` | white `#ffffff` |
+
+> ¹ **AA tuning (light mode, 2026-06-20).** axe flagged two borderline contrast misses (<4.5:1)
+> in the component tests, fixed at the **Figma source** then synced here + to `globals.css`:
+> `muted-foreground` `#737373`→`#6b6b6b` (was `neutral/500`; now a tuned value — 4.34→4.89:1 on
+> `--muted`), and `destructive` `#dc2626`→`#b91c1c` (`red/600`→`red/700` — clears AA on white and
+> the destructive-soft surface). Dark + brand-theme modes are unchanged.
 
 **Token → Tailwind class:**
 ```

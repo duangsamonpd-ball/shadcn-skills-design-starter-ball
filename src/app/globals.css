@@ -17,10 +17,10 @@
   --secondary: #f5f5f5;
   --secondary-foreground: #0a0a0a;
   --muted: #f5f5f5;
-  --muted-foreground: #737373;
+  --muted-foreground: #6b6b6b; /* AA-tuned — 4.89:1 on --muted #f5f5f5 */
   --accent: #f5f5f5;
   --accent-foreground: #171717;
-  --destructive: #dc2626;
+  --destructive: #b91c1c; /* red-700 — AA on white + destructive-soft bg */
   --success: #047857; /* emerald-700 — 5.48:1 on #fff (WCAG AA) */
   --success-foreground: #fafafa;
   --border: #e5e5e5;
