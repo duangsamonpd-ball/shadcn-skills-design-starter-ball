@@ -26,7 +26,7 @@ data-display · data-viz).
 | Missing from **both** (skill expects, nowhere built) | **3** hard + 3 soft (composed) |
 | Templates: Figma Examples only, **no** project routes | **4** |
 | shadcn primitives **beyond** the abstract skill taxonomy | **17** |
-| Per-component 8-state quality bar | **verified live** — see §6 (Focus & Error states absent file-wide) |
+| Per-component 8-state quality bar | **verified live** — see §6. Focus shipped as `State=Active`; **Error/Invalid + Disabled added 2026-06-20** (rec #5) |
 
 **Headline:** the atomic layer is in great shape (10/10 atoms covered both sides). The gaps cluster
 in **higher-order** taxonomy items the abstract specs expect but shadcn doesn't ship as primitives —
@@ -236,13 +236,18 @@ primitive; Empty is the empty-state primitive.)
    file, so the skill no longer implies they exist. Revisit only if added to Figma first.
 2. **Close project↔Figma drift** for `Data Table`, `Empty State`, `Combobox`, `Date Picker`, and
    `Charts` — add the docs pages/components so the app matches the design library.
-3. **Fix Figma naming** before any Code Connect: `Contex→Context`, `Seperator→Separator`,
-   `Aspect Radio→Ratio`, `Input OPT→OTP`, `KPD→Kbd`; consolidate the 4 `Dropdown*` sets. Expand
-   `DESIGN.md §24`.
+3. ~~**Fix Figma naming** before any Code Connect: `Contex→Context`, `Seperator→Separator`,
+   `Aspect Radio→Ratio`, `Input OPT→OTP`, `KPD→Kbd`.~~ **RESOLVED 2026-06-20:** all 6 page/symbol
+   typos renamed at source in Figma (5 pages + Checkbox `Disabledd`→`Disabled`); `DESIGN.md §24`
+   updated. (Remaining: consolidate the 4 `Dropdown*` sets + snake_case drift — non-typo, deferred.)
 4. **Resolve `Resizable`** — in the project but not Figma: add a Figma frame or drop it from `SKILL.md`.
-5. **Close the 8-state gaps in Figma** (§6 done): add **Focus** and **Error/invalid** variants — at
-   minimum to Input, Textarea, Select, Native Select, Checkbox, Radio, Input OTP, Field — and a
-   **Disabled** variant to Button/Switch/Radio/Slider/Select, before wiring Code Connect.
+5. ~~**Close the 8-state gaps in Figma**: add **Focus** and **Error/invalid** variants to Input,
+   Textarea, Select, Native Select, Checkbox, Radio, Input OTP, Field — and a **Disabled** variant to
+   Button/Switch/Radio/Slider/Select.~~ **RESOLVED 2026-06-20:** Focus already shipped as `State=Active`;
+   added **Error/Invalid** to Input (all 4 blocks), Textarea (5 sets), Input OTP (5 sets), Select (3
+   sets), Native Select (2 sets), Checkbox, Radio, Field; added **Disabled** to Button (6 types, relaid
+   3-col), Switch, Slider, Select, Radio. All variants bind tokens (`destructive` / `opacity-50`), no
+   hardcoded values; each verified by screenshot. (Code Connect still blocked — Developer seat needed.)
 6. **Sync Button sizes** — `DESIGN.md §6` lists more sizes than Figma exposes (Small/Default/Large).
 
 ## Refresh the Figma side live
