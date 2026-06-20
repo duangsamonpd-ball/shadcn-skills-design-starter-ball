@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, screen, userEvent, within } from "storybook/test";
 import {
   Menubar,
   MenubarContent,
@@ -41,4 +42,10 @@ export const Default: Story = {
       </MenubarMenu>
     </Menubar>
   ),
+  play: async ({ canvasElement }) => {
+    await userEvent.click(within(canvasElement).getByText("File"));
+    const item = await screen.findByText("Print");
+    await expect(item).toBeInTheDocument();
+    await userEvent.keyboard("{Escape}");
+  },
 };

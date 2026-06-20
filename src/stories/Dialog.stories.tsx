@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, screen, userEvent, waitForElementToBeRemoved, within } from "storybook/test";
 import {
   Dialog,
   DialogClose,
@@ -48,4 +49,13 @@ export const Default: Story = {
       </DialogContent>
     </Dialog>
   ),
+  play: async ({ canvasElement }) => {
+    await userEvent.click(
+      within(canvasElement).getByRole("button", { name: "Edit profile" })
+    );
+    const dialog = await screen.findByRole("dialog");
+    await expect(within(dialog).getByText("Username")).toBeInTheDocument();
+    await userEvent.keyboard("{Escape}");
+    await waitForElementToBeRemoved(dialog);
+  },
 };

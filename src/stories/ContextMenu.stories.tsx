@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, fireEvent, screen, userEvent, waitForElementToBeRemoved, within } from "storybook/test";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -35,4 +36,11 @@ export const Default: Story = {
       </ContextMenuContent>
     </ContextMenu>
   ),
+  play: async ({ canvasElement }) => {
+    fireEvent.contextMenu(within(canvasElement).getByText("Right-click here"));
+    const menu = await screen.findByRole("menu");
+    await expect(within(menu).getByText("Reload")).toBeInTheDocument();
+    await userEvent.keyboard("{Escape}");
+    await waitForElementToBeRemoved(menu);
+  },
 };

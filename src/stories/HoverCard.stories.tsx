@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, screen, userEvent, within } from "storybook/test";
 import {
   HoverCard,
   HoverCardContent,
@@ -26,4 +27,10 @@ export const Default: Story = {
       </HoverCardContent>
     </HoverCard>
   ),
+  play: async ({ canvasElement }) => {
+    const trigger = within(canvasElement).getByRole("button", { name: "@shadcn" });
+    await userEvent.hover(trigger);
+    await expect(await screen.findByText(/React Framework/)).toBeInTheDocument();
+    await userEvent.unhover(trigger);
+  },
 };

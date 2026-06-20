@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, screen, userEvent, waitForElementToBeRemoved, within } from "storybook/test";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -41,4 +42,15 @@ export const Default: Story = {
       </AlertDialogContent>
     </AlertDialog>
   ),
+  play: async ({ canvasElement }) => {
+    await userEvent.click(
+      within(canvasElement).getByRole("button", { name: "Delete account" })
+    );
+    const dialog = await screen.findByRole("alertdialog");
+    await expect(
+      within(dialog).getByText("Are you absolutely sure?")
+    ).toBeInTheDocument();
+    await userEvent.click(within(dialog).getByRole("button", { name: "Cancel" }));
+    await waitForElementToBeRemoved(dialog);
+  },
 };
