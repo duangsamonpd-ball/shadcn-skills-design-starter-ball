@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, screen, userEvent, waitForElementToBeRemoved, within } from "storybook/test";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -38,4 +39,13 @@ export const Default: Story = {
       </DropdownMenuContent>
     </DropdownMenu>
   ),
+  play: async ({ canvasElement }) => {
+    await userEvent.click(
+      within(canvasElement).getByRole("button", { name: "Open menu" })
+    );
+    const menu = await screen.findByRole("menu");
+    await expect(within(menu).getByText("Billing")).toBeInTheDocument();
+    await userEvent.keyboard("{Escape}");
+    await waitForElementToBeRemoved(menu);
+  },
 };

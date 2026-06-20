@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, screen, userEvent, waitForElementToBeRemoved, within } from "storybook/test";
 import {
   Drawer,
   DrawerClose,
@@ -42,4 +43,13 @@ export const Default: Story = {
       </DrawerContent>
     </Drawer>
   ),
+  play: async ({ canvasElement }) => {
+    await userEvent.click(
+      within(canvasElement).getByRole("button", { name: "Open drawer" })
+    );
+    const title = await screen.findByText("Move goal");
+    await expect(title).toBeInTheDocument();
+    await userEvent.keyboard("{Escape}");
+    await waitForElementToBeRemoved(title);
+  },
 };

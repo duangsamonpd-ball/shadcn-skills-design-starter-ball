@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, screen, userEvent, within } from "storybook/test";
 import {
   Tooltip,
   TooltipContent,
@@ -32,4 +33,11 @@ export const Default: Story = {
       <TooltipContent>Add to library</TooltipContent>
     </Tooltip>
   ),
+  play: async ({ canvasElement }) => {
+    const trigger = within(canvasElement).getByRole("button", { name: "Hover me" });
+    await userEvent.hover(trigger);
+    const tips = await screen.findAllByText("Add to library");
+    await expect(tips[0]).toBeInTheDocument();
+    await userEvent.unhover(trigger);
+  },
 };
