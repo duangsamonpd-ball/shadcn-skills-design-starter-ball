@@ -27,3 +27,41 @@ export const Default: Story = {
     </RadioGroup>
   ),
 };
+
+export const Disabled: Story = {
+  render: () => (
+    <RadioGroup defaultValue="comfortable" className="gap-3" disabled>
+      {[
+        ["default", "Default"],
+        ["comfortable", "Comfortable"],
+        ["compact", "Compact"],
+      ].map(([value, label]) => (
+        <div key={value} className="flex items-center gap-2">
+          <RadioGroupItem value={value} id={`d-${value}`} />
+          <Label htmlFor={`d-${value}`}>{label}</Label>
+        </div>
+      ))}
+    </RadioGroup>
+  ),
+};
+
+/** `aria-invalid` on each item gives the destructive ring. */
+export const Invalid: Story = {
+  render: () => (
+    <div className="grid gap-2">
+      <RadioGroup className="gap-3">
+        {[
+          ["default", "Default"],
+          ["comfortable", "Comfortable"],
+          ["compact", "Compact"],
+        ].map(([value, label]) => (
+          <div key={value} className="flex items-center gap-2">
+            <RadioGroupItem value={value} id={`i-${value}`} aria-invalid />
+            <Label htmlFor={`i-${value}`}>{label}</Label>
+          </div>
+        ))}
+      </RadioGroup>
+      <p className="text-sm text-destructive">Please choose an option.</p>
+    </div>
+  ),
+};

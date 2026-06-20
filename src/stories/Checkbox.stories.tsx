@@ -37,3 +37,18 @@ export const Disabled: Story = {
     </div>
   ),
 };
+
+/** `aria-invalid` gives the box a destructive border + ring. */
+export const Invalid: Story = {
+  render: () => (
+    <div className="grid gap-2">
+      <div className="flex items-center gap-2">
+        <Checkbox id="c4" aria-invalid aria-describedby="c4-error" />
+        <Label htmlFor="c4">Accept terms and conditions</Label>
+      </div>
+      <p id="c4-error" className="text-sm text-destructive">
+        You must accept before continuing.
+      </p>
+    </div>
+  ),
+};

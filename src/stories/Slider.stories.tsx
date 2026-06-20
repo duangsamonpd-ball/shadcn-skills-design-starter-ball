@@ -21,3 +21,9 @@ export const Range: Story = {
     <Slider defaultValue={[25, 75]} max={100} step={1} className="w-64" />
   ),
 };
+
+export const Disabled: Story = {
+  render: () => (
+    <Slider defaultValue={[50]} max={100} step={1} disabled className="w-64" />
+  ),
+};

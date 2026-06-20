@@ -37,3 +37,31 @@ export const Default: Story = {
     </Select>
   ),
 };
+
+export const Disabled: Story = {
+  render: () => (
+    <Select disabled>
+      <SelectTrigger className="w-56">
+        <SelectValue placeholder="Select a fruit" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="apple">Apple</SelectItem>
+      </SelectContent>
+    </Select>
+  ),
+};
+
+/** Set `aria-invalid` on the trigger for the destructive border + ring. */
+export const Invalid: Story = {
+  render: () => (
+    <Select>
+      <SelectTrigger className="w-56" aria-invalid>
+        <SelectValue placeholder="Select a fruit" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="banana">Banana</SelectItem>
+      </SelectContent>
+    </Select>
+  ),
+};
