@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, userEvent, within } from "storybook/test";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -58,4 +59,18 @@ export const Invalid: Story = {
       </p>
     </div>
   ),
+};
+
+/** Interaction test — typing updates the input value. */
+export const Typing: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => (
+    <Input aria-label="Email" placeholder="Email" className="w-72" />
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole("textbox", { name: "Email" });
+    await userEvent.type(input, "hello@example.com");
+    await expect(input).toHaveValue("hello@example.com");
+  },
 };

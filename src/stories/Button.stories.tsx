@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, fn, userEvent, within } from "storybook/test";
 import { Button } from "@/components/ui/button";
 
 const meta = {
@@ -64,4 +65,15 @@ export const Sizes: Story = {
 
 export const Disabled: Story = {
   args: { disabled: true },
+};
+
+/** Interaction test — clicking the button fires its `onClick`. */
+export const Clickable: Story = {
+  args: { children: "Click me", onClick: fn() },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button", { name: "Click me" });
+    await userEvent.click(button);
+    await expect(args.onClick).toHaveBeenCalledOnce();
+  },
 };

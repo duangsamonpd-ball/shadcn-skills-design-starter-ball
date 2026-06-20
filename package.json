@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test-storybook": "vitest run --project=storybook",
+    "test-storybook:watch": "vitest --project=storybook",
+    "test-storybook:coverage": "vitest run --project=storybook --coverage"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
@@ -41,6 +44,7 @@
     "@storybook/addon-a11y": "^10.4.4",
     "@storybook/addon-docs": "^10.4.4",
     "@storybook/addon-themes": "^10.4.4",
+    "@storybook/addon-vitest": "^10.4.6",
     "@storybook/nextjs-vite": "^10.4.4",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
@@ -53,6 +57,9 @@
     "storybook": "^10.4.4",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vite": "^8.0.16"
+    "vite": "^8.0.16",
+    "vitest": "^4.1.9",
+    "@vitest/browser-playwright": "^4.1.9",
+    "@vitest/coverage-v8": "^4.1.9"
   }
 }

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, fn, userEvent, within } from "storybook/test";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 
@@ -47,4 +48,23 @@ export const Invalid: Story = {
       <Label htmlFor="s4">Airplane mode</Label>
     </div>
   ),
+};
+
+/** Interaction test — clicking toggles checked state and fires `onCheckedChange`. */
+export const Toggle: Story = {
+  args: { onCheckedChange: fn() },
+  render: (args) => (
+    <div className="flex items-center gap-2">
+      <Switch id="s-toggle" {...args} />
+      <Label htmlFor="s-toggle">Airplane mode</Label>
+    </div>
+  ),
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const sw = canvas.getByRole("switch");
+    await expect(sw).not.toBeChecked();
+    await userEvent.click(sw);
+    await expect(sw).toBeChecked();
+    await expect(args.onCheckedChange).toHaveBeenCalledWith(true);
+  },
 };
