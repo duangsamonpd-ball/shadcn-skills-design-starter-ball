@@ -230,8 +230,10 @@ primitive; Empty is the empty-state primitive.)
 
 ## 7. Recommendations (prioritized)
 
-1. **Build the 3 hard gaps** where the skill taxonomy expects them — `Stepper`, `File Upload`,
-   `Tree View` — or consciously mark them out-of-scope in `SKILL.md §2`.
+1. ~~**Build the 3 hard gaps** where the skill taxonomy expects them — `Stepper`, `File Upload`,
+   `Tree View` — or consciously mark them out-of-scope in `SKILL.md §2`.~~ **RESOLVED 2026-06-20:**
+   marked **out-of-scope** in `SKILL.md §2` — absent from both the `@shadcn` registry and the Figma
+   file, so the skill no longer implies they exist. Revisit only if added to Figma first.
 2. **Close project↔Figma drift** for `Data Table`, `Empty State`, `Combobox`, `Date Picker`, and
    `Charts` — add the docs pages/components so the app matches the design library.
 3. **Fix Figma naming** before any Code Connect: `Contex→Context`, `Seperator→Separator`,

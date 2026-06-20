@@ -87,6 +87,11 @@ npm run dev
 > **composed**, not single CLI items. `Resizable` is intentionally **excluded** — it ships in shadcn but
 > is **not part of this project's Figma design system** (see `COMPONENT-AUDIT.md`); add a Figma frame
 > before reintroducing it.
+>
+> **Out of scope:** `Stepper`, `File Upload`, and `Tree View` are **not** part of this design system —
+> the abstract ux-ui taxonomy names them, but they ship in **neither** the `@shadcn` registry **nor**
+> this project's Figma file (see `COMPONENT-AUDIT.md`). Do not advertise or build them here; if a task
+> needs one, add it to Figma first and source/compose a real implementation before documenting it.
 
 ---
 
