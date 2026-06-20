@@ -19,8 +19,8 @@ const preview: Preview = {
     },
     // Theme provides the surface; disable the separate backgrounds control.
     backgrounds: { disable: true },
-    // Surface accessibility findings to QA without failing the build.
-    a11y: { test: "todo" },
+    // Fail the test run on accessibility violations (axe runs on every story).
+    a11y: { test: "error" },
     options: {
       storySort: {
         order: ["Design System", ["Introduction"], "Components"],
