@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import {
   NativeSelect,
+  NativeSelectOptGroup,
   NativeSelectOption,
 } from "@/components/ui/native-select";
 import { Label } from "@/components/ui/label";
@@ -40,6 +41,32 @@ export const Default: Story = {
 export const Disabled: Story = {
   render: () => (
     <NativeSelect className="w-[200px]" defaultValue="apple" aria-label="Fruit" disabled>
+      {options}
+    </NativeSelect>
+  ),
+};
+
+/** Options can be grouped under `NativeSelectOptGroup` labels. */
+export const WithGroups: Story = {
+  render: () => (
+    <NativeSelect className="w-[220px]" defaultValue="frontend" aria-label="Department">
+      <NativeSelectOptGroup label="Engineering">
+        <NativeSelectOption value="frontend">Frontend</NativeSelectOption>
+        <NativeSelectOption value="backend">Backend</NativeSelectOption>
+        <NativeSelectOption value="devops">DevOps</NativeSelectOption>
+      </NativeSelectOptGroup>
+      <NativeSelectOptGroup label="Sales">
+        <NativeSelectOption value="sales-rep">Sales Rep</NativeSelectOption>
+        <NativeSelectOption value="account-manager">Account Manager</NativeSelectOption>
+      </NativeSelectOptGroup>
+    </NativeSelect>
+  ),
+};
+
+/** The `sm` size renders a shorter control. */
+export const Small: Story = {
+  render: () => (
+    <NativeSelect className="w-[200px]" size="sm" defaultValue="apple" aria-label="Fruit">
       {options}
     </NativeSelect>
   ),

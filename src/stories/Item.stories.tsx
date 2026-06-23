@@ -5,7 +5,11 @@ import {
   ItemActions,
   ItemContent,
   ItemDescription,
+  ItemFooter,
+  ItemGroup,
+  ItemHeader,
   ItemMedia,
+  ItemSeparator,
   ItemTitle,
 } from "@/components/ui/item";
 import { Button } from "@/components/ui/button";
@@ -35,5 +39,41 @@ export const Default: Story = {
         </Button>
       </ItemActions>
     </Item>
+  ),
+};
+
+/** `ItemGroup` lists items with an `ItemSeparator`; `ItemHeader`/`ItemFooter` span the row. */
+export const Group: Story = {
+  render: () => (
+    <ItemGroup className="w-80">
+      <Item variant="outline" role="listitem">
+        <ItemHeader>
+          <ItemTitle>Notifications</ItemTitle>
+          <Button variant="ghost" size="sm">
+            Mark all read
+          </Button>
+        </ItemHeader>
+        <ItemMedia variant="icon">
+          <Mail />
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle>New message</ItemTitle>
+          <ItemDescription>You have a new message from Sarah.</ItemDescription>
+        </ItemContent>
+        <ItemFooter>
+          <ItemDescription>2 minutes ago</ItemDescription>
+        </ItemFooter>
+      </Item>
+      <ItemSeparator />
+      <Item variant="outline" role="listitem">
+        <ItemMedia variant="icon">
+          <Mail />
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle>Weekly digest</ItemTitle>
+          <ItemDescription>Your summary for this week is ready.</ItemDescription>
+        </ItemContent>
+      </Item>
+    </ItemGroup>
   ),
 };

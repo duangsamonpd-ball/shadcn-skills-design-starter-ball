@@ -106,11 +106,25 @@ function MenubarFull() {
 export const FullFeatured: Story = {
   render: () => <MenubarFull />,
   play: async ({ canvasElement }) => {
-    await userEvent.click(within(canvasElement).getByText("File"));
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByText("File"));
     const menu = await screen.findByRole("menu");
     await userEvent.hover(within(menu).getByText("Share"));
     await expect(await screen.findByText("Email link")).toBeInTheDocument();
     await userEvent.keyboard("{Escape}"); // close submenu
     await userEvent.keyboard("{Escape}"); // close menu
+
+    // Open the View menu to render checkbox + radio items.
+    await userEvent.click(canvas.getByText("View"));
+    const checkbox = await screen.findByRole("menuitemcheckbox", {
+      name: "Always Show Bookmarks",
+    });
+    await expect(checkbox).toBeChecked();
+    await userEvent.click(checkbox);
+    await userEvent.click(canvas.getByText("View"));
+    await expect(
+      await screen.findByRole("menuitemradio", { name: "Right" })
+    ).toBeInTheDocument();
+    await userEvent.keyboard("{Escape}");
   },
 };
