@@ -50,7 +50,7 @@ Browse 54 live components, build UI with semantic tokens, and let Claude Code de
 | **Docs site** | An interactive component explorer with **⌘K palette**, URL routing, and token reference pages |
 | **Theming** | `next-themes` dark mode + **Sonner** toaster, ready in the root layout |
 | **AI assistance** | **18 Claude Code skills** — 1 project skill (`shadcn-nextjs-design`) + a 17-skill design suite |
-| **Quality** | WCAG 2.2 AA verified · Playwright click-through harness · accessibility & design-review skills |
+| **Quality** | WCAG 2.2 AA verified · Storybook component tests (Vitest + Playwright, ~84% coverage) · accessibility & design-review skills |
 
 ## 🚀 Quick start
 
@@ -67,6 +67,8 @@ npm run dev          # → http://localhost:3000
 | `npm run lint` | Run ESLint |
 | `npm run storybook` | Start Storybook (→ http://localhost:6006) |
 | `npm run build-storybook` | Build the static Storybook |
+| `npm run test-storybook` | Run the Storybook component tests (Vitest + Playwright) |
+| `npm run test-storybook:coverage` | Run the component tests with a coverage report |
 
 Add more shadcn components anytime:
 
@@ -146,6 +148,8 @@ style guide.
 - 🔍 **⌘K command palette** — fuzzy-jump to any component or token page
 - 🔗 **URL routing** — every page is linkable / bookmarkable (`/?p=button`) and **Back/Forward works**
   (built on `useSyncExternalStore` — SSR-safe, zero hydration mismatch)
+- 🧬 **React | HTML code toggle** — every component's **Code** tab flips between the React/JSX source
+  and the rendered HTML markup
 - 🎨 **Token reference pages** — Colors, Typography, Spacing, Radius, Shadows, Icons
 - 🌗 **Light / dark** toggle, every component shown in both
 - ♿ **Accessible** — single `<main>` landmark, focus moves to content on navigation, `aria-live` page
@@ -162,15 +166,21 @@ review, and a11y checks.
 **https://main--6a3386f159568e66e837d6d0.chromatic.com**
 
 ```bash
-npm run storybook         # → http://localhost:6006 (local dev)
-npm run build-storybook   # static build into storybook-static/
+npm run storybook                  # → http://localhost:6006 (local dev)
+npm run build-storybook            # static build into storybook-static/
+npm run test-storybook             # run the component tests (Vitest + Playwright)
+npm run test-storybook:coverage    # …with a coverage report
 npx chromatic --project-token=<token>   # publish the static build to Chromatic
 ```
 
 - **Stack** — Storybook 10 with the **`@storybook/nextjs-vite`** framework (official Next 16 + React 19
   support). Tailwind v4 is picked up through the project's existing `postcss.config.mjs`.
-- **Addons** — `addon-docs` (autodocs), `addon-a11y` (the **A11y** tab runs axe on every story), and
-  `addon-themes` (a toolbar toggle flips the canvas between **light / dark**).
+- **Addons** — `addon-docs` (autodocs), `addon-a11y` (the **A11y** tab runs axe on every story),
+  `addon-themes` (a toolbar toggle flips the canvas between **light / dark**), and
+  `addon-html` (a **HTML** tab showing each story's rendered markup).
+- **Component testing** — `addon-vitest` runs every story's play function as a test under **Vitest +
+  Playwright** (real Chromium), with **coverage** and **a11y** checks. Run it with
+  `npm run test-storybook`; current statement coverage is **~84%**.
 - **Stories** live in `src/stories/<Component>.stories.tsx` (one per UI component), titled
   `Components/<Name>`. They load `globals.css` so the same design tokens + Geist fonts apply.
 
