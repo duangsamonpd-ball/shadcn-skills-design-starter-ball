@@ -37,7 +37,7 @@
   --success-foreground: #fafafa;
   --border: #e5e5e5;
   --input: #e5e5e5;
-  --ring: #737373;
+  --ring: #6b6b6b;
   --chart-1: #5eb1ef;
   --chart-2: #0090ff;
   --chart-3: #0588f0;
@@ -50,7 +50,7 @@
   --sidebar-accent: #f5f5f5;
   --sidebar-accent-foreground: #171717;
   --sidebar-border: #d4d4d4;
-  --sidebar-ring: #737373;
+  --sidebar-ring: #6b6b6b;
   --background-color: rgba(0,0,0,0.30);
   --semantic-background: #6b7280;
   --semantic-border: #4b5563;
@@ -78,7 +78,7 @@
   --success-foreground: #0a0a0a;
   --border: #404040;
   --input: #171717;
-  --ring: #737373;
+  --ring: #6b6b6b;
   --chart-1: #5eb1ef;
   --chart-2: #0090ff;
   --chart-3: #0588f0;
@@ -91,7 +91,7 @@
   --sidebar-accent: #262626;
   --sidebar-accent-foreground: #fafafa;
   --sidebar-border: rgba(255,255,255,0.80);
-  --sidebar-ring: #737373;
+  --sidebar-ring: #6b6b6b;
   --background-color: rgba(0,0,0,0.30);
   --semantic-background: #6b7280;
   --semantic-border: #4b5563;
@@ -167,14 +167,14 @@ export default { plugins: { "@tailwindcss/postcss": {} } }
 | `secondary` | neutral/100 `#f5f5f5` | neutral/800 `#262626` | blue/800 `#1e40af` | yellow/800 `#854d0e` |
 | `secondary-foreground` | neutral/950 `#0a0a0a` | neutral/50 `#fafafa` | blue/50 `#eff6ff` | yellow/50 `#fefce8` |
 | `muted` | neutral/100 `#f5f5f5` | neutral/800 `#262626` | blue/800 `#1e40af` | yellow/800 `#854d0e` |
-| `muted-foreground` | `#6b6b6b` (AA-tuned)¹ | neutral/400 `#a3a3a3` | blue/400 `#60a5fa` | yellow/400 `#facc15` |
+| `muted-foreground` | neutral/500 `#6b6b6b`¹ | neutral/400 `#a3a3a3` | blue/400 `#60a5fa` | yellow/400 `#facc15` |
 | `accent` | neutral/100 `#f5f5f5` | neutral/700 `#404040` | blue/700 `#1d4ed8` | yellow/700 `#a16207` |
 | `accent-foreground` | neutral/900 `#171717` | neutral/50 `#fafafa` | blue/50 `#eff6ff` | yellow/50 `#fefce8` |
 | `destructive` | red/700 `#b91c1c`¹ | red/400 `#f87171` | red/400 `#f87171` | red/600 `#dc2626` |
-| `success` | emerald/700 `#047857` | emerald/400 `#34d399` | emerald/400 `#34d399` | emerald/700 `#047857` |
+| `success`² | emerald/700 `#047857` | emerald/400 `#34d399` | emerald/400 `#34d399` | emerald/700 `#047857` |
 | `border` | neutral/200 `#e5e5e5` | neutral/700 `#404040` | blue/700 `#1d4ed8` | yellow/700 `#a16207` |
 | `input` | neutral/200 `#e5e5e5` | neutral/900 `#171717` | blue/900 `#1e3a8a` | yellow/900 `#713f12` |
-| `ring` | neutral/500 `#737373` | neutral/500 `#737373` | blue/500 `#3b82f6` | yellow/50 `#fefce8` |
+| `ring` | neutral/500 `#6b6b6b`¹ | neutral/500 `#6b6b6b`¹ | blue/500 `#3b82f6` | yellow/50 `#fefce8` |
 | `chart-1` | blue/8 `#5eb1ef` | blue/8 `#5eb1ef` | blue/8 `#5eb1ef` | yellow/8 `#d5ae39` |
 | `chart-2` | blue/9 `#0090ff` | blue/9 `#0090ff` | blue/9 `#0090ff` | yellow/9 `#ffe629` |
 | `chart-3` | blue/10 `#0588f0` | blue/10 `#0588f0` | blue/10 `#0588f0` | yellow/10 `#ffdc00` |
@@ -187,17 +187,27 @@ export default { plugins: { "@tailwindcss/postcss": {} } }
 | `sidebar-accent` | neutral/100 `#f5f5f5` | neutral/800 `#262626` | blue/800 `#1e40af` | yellow/800 `#854d0e` |
 | `sidebar-accent-foreground` | neutral/900 `#171717` | neutral/50 `#fafafa` | blue/50 `#eff6ff` | yellow/50 `#fefce8` |
 | `sidebar-border` | neutral/300 `#d4d4d4` | white/10 `rgba(255,255,255,0.80)` | white/10 `rgba(255,255,255,0.80)` | white/10 `rgba(255,255,255,0.80)` |
-| `sidebar-ring` | neutral/500 `#737373` | neutral/500 `#737373` | blue/500 `#3b82f6` | yellow/500 `#eab308` |
+| `sidebar-ring` | neutral/500 `#6b6b6b`¹ | neutral/500 `#6b6b6b`¹ | blue/500 `#3b82f6` | yellow/500 `#eab308` |
 | `background-color` | black/5 `rgba(0,0,0,0.30)` | black/5 `rgba(0,0,0,0.30)` | black/5 `rgba(0,0,0,0.30)` | black/5 `rgba(0,0,0,0.30)` |
 | `semantic-background` | gray/500 `#6b7280` | gray/500 `#6b7280` | gray/900 `#111827` | gray/600 `#4b5563` |
 | `semantic-border` | gray/600 `#4b5563` | gray/600 `#4b5563` | gray/800 `#1f2937` | gray/800 `#1f2937` |
 | `semantic-foreground` | white `#ffffff` | white `#ffffff` | white `#ffffff` | white `#ffffff` |
 
-> ¹ **AA tuning (light mode, 2026-06-20).** axe flagged two borderline contrast misses (<4.5:1)
-> in the component tests, fixed at the **Figma source** then synced here + to `globals.css`:
-> `muted-foreground` `#737373`→`#6b6b6b` (was `neutral/500`; now a tuned value — 4.34→4.89:1 on
-> `--muted`), and `destructive` `#dc2626`→`#b91c1c` (`red/600`→`red/700` — clears AA on white and
-> the destructive-soft surface). Dark + brand-theme modes are unchanged.
+> ¹ **`neutral/500` redefined `#737373`→`#6b6b6b` (Figma source, 2026-06-27) for AA.** The standard
+> Tailwind `neutral-500` (`#737373`) is only `4.34:1` on `--muted` `#f5f5f5` — below WCAG AA. The
+> primitive was redefined to `#6b6b6b` (`4.89:1`, clears AA) so `muted-foreground` could stay a
+> **named** alias to `neutral/500` instead of a raw value. ⚠️ This also shifts the two other vars
+> aliased to `neutral/500` — **`ring`** and **`sidebar-ring`** (light + dark) — to `#6b6b6b`, and
+> means this token **diverges from the stock Tailwind `neutral-500`**. Separately, `destructive`
+> `#dc2626`→`#b91c1c` (`red/600`→`red/700`) clears AA on white + the destructive-soft surface.
+> Brand-theme (primary/secondary) modes unchanged.
+>
+> ² **`success` is a code-only token — NOT in the Figma source.** `globals.css` defines `--success`
+> /`--success-foreground` (light `emerald/700` `#047857`, dark `emerald/400` `#34d399`) and 5 call
+> sites use `text-success`, but `shdcn/ui` has no `success` variable (only the `emerald/*`
+> primitives exist). The hex/primitive names above are the **code** values, not Figma assignments.
+> To close the gap, add a `success` (+`success-foreground`) semantic var in Figma aliased to the
+> emerald primitives, then this row becomes Figma-backed like the rest.
 
 **Token → Tailwind class:**
 ```
@@ -427,7 +437,7 @@ Base `--radius = 0.5rem (8px)`. Size scale × 15 direction variants = 150 total.
 
 **zinc**: `zinc/50`:`#fafafa` · `zinc/100`:`#f4f4f5` · `zinc/200`:`#e4e4e7` · `zinc/300`:`#d4d4d8` · `zinc/400`:`#a1a1aa` · `zinc/500`:`#71717a` · `zinc/600`:`#52525b` · `zinc/700`:`#3f3f46` · `zinc/800`:`#27272a` · `zinc/900`:`#18181b` · `zinc/950`:`#09090b`
 
-**neutral**: `neutral/50`:`#fafafa` · `neutral/100`:`#f5f5f5` · `neutral/200`:`#e5e5e5` · `neutral/300`:`#d4d4d4` · `neutral/400`:`#a3a3a3` · `neutral/500`:`#737373` · `neutral/600`:`#525252` · `neutral/700`:`#404040` · `neutral/800`:`#262626` · `neutral/900`:`#171717` · `neutral/950`:`#0a0a0a`
+**neutral**: `neutral/50`:`#fafafa` · `neutral/100`:`#f5f5f5` · `neutral/200`:`#e5e5e5` · `neutral/300`:`#d4d4d4` · `neutral/400`:`#a3a3a3` · `neutral/500`:`#6b6b6b` (⚠ redefined from Tailwind `#737373` — see ¹) · `neutral/600`:`#525252` · `neutral/700`:`#404040` · `neutral/800`:`#262626` · `neutral/900`:`#171717` · `neutral/950`:`#0a0a0a`
 
 **stone**: `stone/50`:`#fafaf9` · `stone/100`:`#f5f5f4` · `stone/200`:`#e7e5e4` · `stone/300`:`#d6d3d1` · `stone/400`:`#a8a29e` · `stone/500`:`#78716c` · `stone/600`:`#57534e` · `stone/700`:`#44403c` · `stone/800`:`#292524` · `stone/900`:`#1c1917` · `stone/950`:`#0c0a09`
 
@@ -1064,7 +1074,7 @@ Correct these when mirroring Figma into code / Code Connect — never copy the t
 |-------------|-----------------|------|
 | `Giest Mono` | `Geist Mono` | Missing 'e' |
 | `Sans Sarif` | `Sans Serif` | Misspelling (fontUse variable name) |
-| `pimary-foreground` | `primary-foreground` | Missing 'r' |
+| ~~`pimary-foreground`~~ | `primary-foreground` | ✅ **FIXED IN FIGMA 2026-06-27** (renamed at source) |
 
 **Component page / variant names** — ✅ **FIXED IN FIGMA 2026-06-20** (all 6 renamed at source; table kept
 as a historical record / for anyone reading an older Figma snapshot)

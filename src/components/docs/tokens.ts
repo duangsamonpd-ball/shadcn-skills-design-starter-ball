@@ -48,7 +48,7 @@ export const colorGroups: ColorGroup[] = [
     tokens: [
       { name: "Border", cssVar: "--border", light: "#e5e5e5", dark: "#404040" },
       { name: "Input", cssVar: "--input", light: "#e5e5e5", dark: "#171717" },
-      { name: "Ring", cssVar: "--ring", light: "#737373", dark: "#737373" },
+      { name: "Ring", cssVar: "--ring", light: "#6b6b6b", dark: "#6b6b6b" },
     ],
   },
   {
@@ -62,7 +62,7 @@ export const colorGroups: ColorGroup[] = [
       { name: "Sidebar Accent", cssVar: "--sidebar-accent", light: "#f5f5f5", dark: "#262626" },
       { name: "Sidebar Accent Foreground", cssVar: "--sidebar-accent-foreground", light: "#171717", dark: "#fafafa" },
       { name: "Sidebar Border", cssVar: "--sidebar-border", light: "#d4d4d4", dark: "rgba(255,255,255,0.80)" },
-      { name: "Sidebar Ring", cssVar: "--sidebar-ring", light: "#737373", dark: "#737373" },
+      { name: "Sidebar Ring", cssVar: "--sidebar-ring", light: "#6b6b6b", dark: "#6b6b6b" },
     ],
   },
   {
