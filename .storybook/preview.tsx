@@ -23,7 +23,14 @@ const preview: Preview = {
     a11y: { test: "error" },
     options: {
       storySort: {
-        order: ["Design System", ["Introduction"], "Components"],
+        order: [
+          "Getting Started",
+          ["Introduction", "Installation"],
+          "Design Tokens",
+          ["Colors", "Typography", "Spacing", "Radius", "Shadows", "Icons"],
+          "Guides",
+          "Components",
+        ],
       },
     },
   },

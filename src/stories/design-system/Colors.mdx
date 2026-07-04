@@ -1,0 +1,13 @@
+import { Meta, Unstyled } from "@storybook/addon-docs/blocks";
+import { ColorsPage } from "@/components/docs/pages";
+
+<Meta title="Design Tokens/Colors" />
+
+{/* Token values come from src/components/docs/tokens.ts (mirrored from
+    globals.css / DESIGN.md), so this stays in sync with Figma. */}
+
+<Unstyled>
+  <div className="font-sans text-foreground flex flex-col gap-10 p-1">
+    <ColorsPage />
+  </div>
+</Unstyled>
