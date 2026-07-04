@@ -1,0 +1,13 @@
+import { Meta, Unstyled } from "@storybook/addon-docs/blocks";
+import { IntroductionPage } from "@/components/docs/pages";
+
+<Meta title="Getting Started/Introduction" />
+
+{/* Renders the same page component as the docs site for 1:1 parity.
+    Unstyled strips Storybook's docs typography so Tailwind styling wins. */}
+
+<Unstyled>
+  <div className="font-sans text-foreground flex flex-col gap-10 p-1">
+    <IntroductionPage onNavigate={() => {}} />
+  </div>
+</Unstyled>

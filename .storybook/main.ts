@@ -1,7 +1,12 @@
 import type { StorybookConfig } from "@storybook/nextjs-vite";
 
 const config: StorybookConfig = {
-  stories: ["../src/**/*.stories.@(ts|tsx|mdx)"],
+  stories: [
+    // Docs-only MDX pages (Getting Started, Design Tokens, Guides).
+    "../src/**/*.mdx",
+    // Component CSF stories.
+    "../src/**/*.stories.@(ts|tsx)",
+  ],
   addons: [
     "@storybook/addon-docs",
     "@storybook/addon-a11y",
