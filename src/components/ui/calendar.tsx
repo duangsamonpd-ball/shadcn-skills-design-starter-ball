@@ -164,13 +164,17 @@ function Calendar({
         DayButton: ({ ...props }) => (
           <CalendarDayButton locale={locale} {...props} />
         ),
-        WeekNumber: ({ children, ...props }) => {
+        WeekNumber: ({ children, week, ...props }) => {
+          // Render a <th> (not <td>): react-day-picker passes scope="row"
+          // + role="rowheader", and `scope` is only valid on header cells.
+          // `week` is destructured out so the object isn't leaked as an attr.
+          void week
           return (
-            <td {...props}>
+            <th {...props}>
               <div className="flex size-(--cell-size) items-center justify-center text-center">
                 {children}
               </div>
-            </td>
+            </th>
           )
         },
         ...components,
