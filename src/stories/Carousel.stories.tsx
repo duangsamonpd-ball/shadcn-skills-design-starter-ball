@@ -67,12 +67,12 @@ export const NavigateWithButtons: Story = {
     const next = canvas.getByRole("button", { name: "Next slide" });
     // At the start you can't scroll back.
     await waitFor(() => expect(prev).toBeDisabled());
-    // Exercise scrollNext/scrollPrev. We don't assert the resulting embla
-    // scroll state — it depends on layout/animation settling, which isn't
-    // deterministic in headless snapshot environments.
+    // Only click Next (it's enabled at the start) to exercise scrollNext.
+    // We avoid clicking Previous: while it's disabled the shadcn button has
+    // pointer-events:none, which makes userEvent throw — and whether embla
+    // has settled enough to enable it isn't deterministic in Chromatic's
+    // snapshot browser. scrollPrev is covered by KeyboardNavigation instead.
     await userEvent.click(next);
-    await userEvent.click(next);
-    await userEvent.click(prev);
     await expect(next).toBeInTheDocument();
   },
 };
