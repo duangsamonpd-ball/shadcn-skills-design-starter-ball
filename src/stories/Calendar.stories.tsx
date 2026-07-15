@@ -96,6 +96,25 @@ export const RangeMode: Story = {
   },
 };
 
+/** Week numbers render as <th> row headers (see WeekNumber override). */
+export const WeekNumbers: Story = {
+  render: () => (
+    <Calendar
+      mode="single"
+      showWeekNumber
+      defaultMonth={june2026}
+      className="rounded-md border"
+    />
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    // Week-number cells are proper header cells, not <td>.
+    const weekHeader = canvas.getByRole("rowheader", { name: "Week 23" });
+    await expect(weekHeader.tagName).toBe("TH");
+    await expect(weekHeader).toHaveAttribute("scope", "row");
+  },
+};
+
 /** Weekends disabled. */
 export const DisabledDays: Story = {
   render: () => (
